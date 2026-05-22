@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="Hospital.Core/Hospital.Core.csproj" />
+  <Project Path="Hospital.WindowsApp/Hospital.WindowsApp.csproj" />
+</Solution>
