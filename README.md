@@ -2,7 +2,7 @@
 
 A comprehensive desktop application for managing hospital appointments and patient scheduling. Built with C# and SQL Server, this system streamlines appointment booking, cancellation, and management processes for healthcare facilities.
 
-## 📋 Table of Contents
+##  Table of Contents
 
 - [Features](#features)
 - [Tech Stack](#tech-stack)
@@ -13,7 +13,7 @@ A comprehensive desktop application for managing hospital appointments and patie
 - [Configuration](#configuration)
 - [License](#license)
 
-## ✨ Features
+##  Features
 
 - **Appointment Management**: Create, update, and cancel patient appointments
 - **Patient Records**: Maintain comprehensive patient information and medical history
@@ -24,7 +24,7 @@ A comprehensive desktop application for managing hospital appointments and patie
 - **User Authentication**: Secure role-based access control
 - **Data Persistence**: Reliable SQL Server database backend
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 - **Frontend**: C# Windows Forms / WPF
 - **Backend**: C# (.NET Framework)
@@ -38,14 +38,14 @@ A comprehensive desktop application for managing hospital appointments and patie
 - PowerShell - 1.8%
 - Batchfile - 1.6%
 
-## 📦 Prerequisites
+##  Prerequisites
 
 - .NET Framework 4.7.2 or higher
 - SQL Server 2016 or later
 - Windows 10/11 Operating System
 - Visual Studio 2019 or higher (for development)
 
-## 🚀 Installation
+##  Installation
 
 1. **Clone the repository**
    ```bash
@@ -67,7 +67,7 @@ A comprehensive desktop application for managing hospital appointments and patie
    dotnet run
    ```
 
-## 📖 Usage
+##  Usage
 
 ### For Hospital Administrators
 1. Launch the application
@@ -87,7 +87,7 @@ A comprehensive desktop application for managing hospital appointments and patie
 - Receive appointment reminders
 - Manage personal information
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 HospitalAppointmentSystem/
@@ -105,7 +105,7 @@ HospitalAppointmentSystem/
 └── README.md                  # This file
 ```
 
-## ⚙️ Configuration
+##  Configuration
 
 ### Connection String
 Update your connection string in `App.config`:
@@ -123,7 +123,7 @@ Update your connection string in `App.config`:
 - Configure notification preferences
 - Set working hours and holidays
 
-## 🔐 Security Features
+##  Security Features
 
 - User authentication and authorization
 - Role-based access control (Admin, Doctor, Receptionist, Patient)
@@ -131,12 +131,12 @@ Update your connection string in `App.config`:
 - Secure database connections
 - Audit logging for critical operations
 
-## 🐛 Known Issues
+##  Known Issues
 
 - *No critical issues reported*
 - See [Issues](https://github.com/toobazainabai/HospitalAppointmentSystem/issues) for open tickets
 
-## 🤝 Contributing
+##  Contributing
 
 Contributions are welcome! Please follow these steps:
 
@@ -146,15 +146,15 @@ Contributions are welcome! Please follow these steps:
 4. Push to branch (`git push origin feature/YourFeature`)
 5. Open a Pull Request
 
-## 📝 License
+##  License
 
 This project is licensed under the GNU Affero General Public License v3.0 - see the [LICENSE](LICENSE) file for details.
 
-## 📧 Support
+##  Support
 
 For issues, questions, or suggestions, please create an issue in the [GitHub Issues](https://github.com/toobazainabai/HospitalAppointmentSystem/issues) section.
 
-## 👨‍💻 Author
+##  Author
 
 **toobazainabai**
 
