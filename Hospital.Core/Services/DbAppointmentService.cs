@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Threading.Tasks;
 using Hospital.Core.Contracts;
 using Hospital.Core.Models;
 using Hospital.Core.Utilities;
@@ -25,7 +26,7 @@ namespace Hospital.Core.Services
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.dbAppointment", conn);
+                SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.dbAppointments", conn);
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -57,7 +58,7 @@ namespace Hospital.Core.Services
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.dbAppointment WHERE Id = @id", conn);
+                SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.dbAppointments WHERE Id = @id", conn);
                 cmd.Parameters.AddWithValue("@id", id);
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -88,10 +89,9 @@ namespace Hospital.Core.Services
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand(
-                    "INSERT INTO dbo.dbAppointment (Id, PatientId, DoctorId, AppointmentDateTime, Status, Notes) " +
-                    "VALUES (@id, @patientId, @doctorId, @appointmentDateTime, @status, @notes)", conn);
+                    "INSERT INTO dbo.dbAppointments (PatientId, DoctorId, AppointmentDateTime, Status, Notes) " +
+                    "VALUES (@patientId, @doctorId, @appointmentDateTime, @status, @notes)", conn);
 
-                cmd.Parameters.AddWithValue("@id", appointment.Id);
                 cmd.Parameters.AddWithValue("@patientId", appointment.PatientId ?? "");
                 cmd.Parameters.AddWithValue("@doctorId", appointment.DoctorId ?? "");
                 cmd.Parameters.AddWithValue("@appointmentDateTime", appointment.AppointmentDateTime);
@@ -108,7 +108,7 @@ namespace Hospital.Core.Services
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand(
-                    "UPDATE dbo.dbAppointment SET PatientId = @patientId, DoctorId = @doctorId, " +
+                    "UPDATE dbo.dbAppointments SET PatientId = @patientId, DoctorId = @doctorId, " +
                     "AppointmentDateTime = @appointmentDateTime, Status = @status, Notes = @notes WHERE Id = @id", conn);
 
                 cmd.Parameters.AddWithValue("@id", appointment.Id);
@@ -127,8 +127,15 @@ namespace Hospital.Core.Services
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("DELETE FROM dbo.dbAppointment WHERE Id = @id", conn);
-                cmd.Parameters.AddWithValue("@id", id);
+                SqlCommand cmd = new SqlCommand("DELETE FROM dbo.dbAppointments WHERE Id = @id", conn);
+                if (int.TryParse(id, out int appointmentId))
+                {
+                    cmd.Parameters.AddWithValue("@id", appointmentId);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@id", id);
+                }
 
                 cmd.ExecuteNonQuery();
             }
@@ -141,7 +148,7 @@ namespace Hospital.Core.Services
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.dbAppointment WHERE PatientId = @patientId", conn);
+                SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.dbAppointments WHERE PatientId = @patientId", conn);
                 cmd.Parameters.AddWithValue("@patientId", patientId);
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -174,7 +181,7 @@ namespace Hospital.Core.Services
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.dbAppointment WHERE DoctorId = @doctorId", conn);
+                SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.dbAppointments WHERE DoctorId = @doctorId", conn);
                 cmd.Parameters.AddWithValue("@doctorId", doctorId);
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -207,7 +214,7 @@ namespace Hospital.Core.Services
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.dbAppointment WHERE Status = @status", conn);
+                SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.dbAppointments WHERE Status = @status", conn);
                 cmd.Parameters.AddWithValue("@status", status.ToString());
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -240,8 +247,8 @@ namespace Hospital.Core.Services
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
                 conn.Open();
-                string query = "SELECT a.* FROM dbo.dbAppointment a " +
-                               "JOIN dbo.dbPatient p ON a.PatientId = p.Id " +
+                string query = "SELECT a.* FROM dbo.dbAppointments a " +
+                               "JOIN dbo.dbPatients p ON a.PatientId = p.Id " +
                                "WHERE (p.FirstName LIKE @search OR p.LastName LIKE @search OR a.Notes LIKE @search)";
 
                 if (status.HasValue)
@@ -298,7 +305,7 @@ namespace Hospital.Core.Services
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand(
-                    "SELECT TOP (@count) * FROM dbo.dbAppointment ORDER BY AppointmentDateTime DESC", conn);
+                    "SELECT TOP (@count) * FROM dbo.dbAppointments ORDER BY AppointmentDateTime DESC", conn);
                 cmd.Parameters.AddWithValue("@count", count);
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -335,7 +342,7 @@ namespace Hospital.Core.Services
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
                 conn.Open();
-                string query = "SELECT COUNT(*) FROM dbo.dbAppointment " +
+                string query = "SELECT COUNT(*) FROM dbo.dbAppointments " +
                                "WHERE DoctorId = @doctorId " +
                                "AND Status != 'Cancelled' " +
                                "AND AppointmentDateTime = @appointmentDateTime";
@@ -357,6 +364,67 @@ namespace Hospital.Core.Services
                 int count = Convert.ToInt32(cmd.ExecuteScalar());
                 return count == 0;
             }
+        }
+
+        // Async implementations
+        public async Task<List<Appointment>> GetAllAsync()
+        {
+            return await Task.Run(() => GetAll());
+        }
+
+        public async Task<Appointment> GetByIdAsync(string id)
+        {
+            return await Task.Run(() => GetById(id));
+        }
+
+        public async Task AddAsync(Appointment appointment)
+        {
+            await Task.Run(() => Add(appointment));
+        }
+
+        public async Task UpdateAsync(Appointment appointment)
+        {
+            await Task.Run(() => Update(appointment));
+        }
+
+        public async Task DeleteAsync(string id)
+        {
+            await Task.Run(() => Delete(id));
+        }
+
+        public async Task<List<Appointment>> GetByPatientIdAsync(string patientId)
+        {
+            return await Task.Run(() => GetByPatientId(patientId));
+        }
+
+        public async Task<List<Appointment>> GetByDoctorIdAsync(string doctorId)
+        {
+            return await Task.Run(() => GetByDoctorId(doctorId));
+        }
+
+        public async Task<List<Appointment>> GetByStatusAsync(AppointmentStatusEnum status)
+        {
+            return await Task.Run(() => GetByStatus(status));
+        }
+
+        public async Task<List<Appointment>> SearchAsync(string text, AppointmentStatusEnum? status, DateTime? date)
+        {
+            return await Task.Run(() => Search(text, status, date));
+        }
+
+        public async Task<List<Appointment>> GetRecentAsync(int count)
+        {
+            return await Task.Run(() => GetRecent(count));
+        }
+
+        public async Task<string> GetNextAppointmentIdAsync()
+        {
+            return await Task.Run(() => GetNextAppointmentId());
+        }
+
+        public async Task<bool> IsDoctorAvailableAsync(string doctorId, DateTime appointmentDateTime, string excludeAppointmentId = null)
+        {
+            return await Task.Run(() => IsDoctorAvailable(doctorId, appointmentDateTime, excludeAppointmentId));
         }
     }
 }

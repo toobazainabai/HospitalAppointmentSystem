@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Threading.Tasks;
 using Hospital.Core.Contracts;
 using Hospital.Core.Models;
 using Hospital.Core.Utilities;
@@ -17,7 +18,7 @@ namespace Hospital.Core.Services
         public DbDoctorService(string connString)
         {
             _connectionString = connString;
-            _tableName = ResolveTableName("dbo.dbDoctor", "dbo.Doctor", "dbo.Doctors");
+            _tableName = ResolveTableName("dbo.dbDoctors", "dbo.dbDoctor", "dbo.Doctor", "dbo.Doctors");
         }
 
         public List<Doctor> GetAll()
@@ -250,6 +251,42 @@ namespace Hospital.Core.Services
             }
 
             throw new InvalidOperationException($"None of the expected doctor tables exist: {string.Join(", ", candidates)}");
+        }
+
+        // Async implementations
+        public async Task<List<Doctor>> GetAllAsync()
+        {
+            return await Task.Run(() => GetAll());
+        }
+
+        public async Task<Doctor> GetByIdAsync(string id)
+        {
+            return await Task.Run(() => GetById(id));
+        }
+
+        public async Task AddAsync(Doctor doctor)
+        {
+            await Task.Run(() => Add(doctor));
+        }
+
+        public async Task UpdateAsync(Doctor doctor)
+        {
+            await Task.Run(() => Update(doctor));
+        }
+
+        public async Task DeleteAsync(string id)
+        {
+            await Task.Run(() => Delete(id));
+        }
+
+        public async Task<List<Doctor>> GetBySpecialtyAsync(DoctorSpecialtyEnum specialty)
+        {
+            return await Task.Run(() => GetBySpecialty(specialty));
+        }
+
+        public async Task<List<Doctor>> SearchAsync(string text, DoctorSpecialtyEnum? specialty = null)
+        {
+            return await Task.Run(() => Search(text, specialty));
         }
     }
 }

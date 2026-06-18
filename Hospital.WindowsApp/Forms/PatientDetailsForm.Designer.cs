@@ -15,8 +15,6 @@ namespace Hospital.WindowsApp.Forms
 
         private void InitializeComponent()
         {
-            pnlHeader = new Panel();
-            lblTitle = new Label();
             tableLayoutPanel1 = new TableLayoutPanel();
             lblId = new Label();
             txtId = new TextBox();
@@ -46,32 +44,9 @@ namespace Hospital.WindowsApp.Forms
             rtbMedicalHistory = new RichTextBox();
             pnlButtons = new Panel();
             btnClose = new Button();
-            pnlHeader.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             pnlButtons.SuspendLayout();
             SuspendLayout();
-            // 
-            // pnlHeader
-            // 
-            pnlHeader.BackColor = Color.DarkSlateBlue;
-            pnlHeader.Controls.Add(lblTitle);
-            pnlHeader.Dock = DockStyle.Top;
-            pnlHeader.Location = new Point(0, 0);
-            pnlHeader.Name = "pnlHeader";
-            pnlHeader.Padding = new Padding(20, 16, 20, 12);
-            pnlHeader.Size = new Size(700, 60);
-            pnlHeader.TabIndex = 0;
-            // 
-            // lblTitle
-            // 
-            lblTitle.AutoSize = true;
-            lblTitle.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
-            lblTitle.ForeColor = Color.White;
-            lblTitle.Location = new Point(20, 16);
-            lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(164, 30);
-            lblTitle.TabIndex = 0;
-            lblTitle.Text = "Patient Details";
             // 
             // tableLayoutPanel1
             // 
@@ -105,148 +80,149 @@ namespace Hospital.WindowsApp.Forms
             tableLayoutPanel1.Controls.Add(lblMedicalHistory, 0, 12);
             tableLayoutPanel1.Controls.Add(rtbMedicalHistory, 0, 13);
             tableLayoutPanel1.Dock = DockStyle.Fill;
-            tableLayoutPanel1.Location = new Point(0, 60);
+            tableLayoutPanel1.Location = new Point(0, 0);
+            tableLayoutPanel1.Margin = new Padding(3, 4, 3, 4);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.Padding = new Padding(20);
+            tableLayoutPanel1.Padding = new Padding(23, 27, 23, 27);
             tableLayoutPanel1.RowCount = 14;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 47F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 47F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 47F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 47F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 47F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 47F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 47F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 47F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 47F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 47F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 47F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 47F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 47F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Size = new Size(700, 600);
+            tableLayoutPanel1.Size = new Size(800, 880);
             tableLayoutPanel1.TabIndex = 1;
             // 
             // lblId
             // 
             lblId.Anchor = AnchorStyles.Left;
             lblId.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            lblId.Location = new Point(23, 26);
+            lblId.Location = new Point(26, 35);
             lblId.Name = "lblId";
-            lblId.Size = new Size(100, 23);
+            lblId.Size = new Size(114, 31);
             lblId.TabIndex = 0;
             lblId.Text = "ID:";
             // 
             // txtId
             // 
             txtId.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtId.Location = new Point(223, 26);
-            txtId.Margin = new Padding(5);
+            txtId.Location = new Point(255, 37);
+            txtId.Margin = new Padding(6, 7, 6, 7);
             txtId.Name = "txtId";
-            txtId.Size = new Size(452, 23);
+            txtId.Size = new Size(516, 27);
             txtId.TabIndex = 1;
             // 
             // lblFirstName
             // 
             lblFirstName.Anchor = AnchorStyles.Left;
             lblFirstName.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            lblFirstName.Location = new Point(23, 61);
+            lblFirstName.Location = new Point(26, 82);
             lblFirstName.Name = "lblFirstName";
-            lblFirstName.Size = new Size(100, 23);
+            lblFirstName.Size = new Size(114, 31);
             lblFirstName.TabIndex = 2;
             lblFirstName.Text = "First Name:";
             // 
             // txtFirstName
             // 
             txtFirstName.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtFirstName.Location = new Point(223, 61);
-            txtFirstName.Margin = new Padding(5);
+            txtFirstName.Location = new Point(255, 84);
+            txtFirstName.Margin = new Padding(6, 7, 6, 7);
             txtFirstName.Name = "txtFirstName";
-            txtFirstName.Size = new Size(452, 23);
+            txtFirstName.Size = new Size(516, 27);
             txtFirstName.TabIndex = 3;
             // 
             // lblLastName
             // 
             lblLastName.Anchor = AnchorStyles.Left;
             lblLastName.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            lblLastName.Location = new Point(23, 96);
+            lblLastName.Location = new Point(26, 129);
             lblLastName.Name = "lblLastName";
-            lblLastName.Size = new Size(100, 23);
+            lblLastName.Size = new Size(114, 31);
             lblLastName.TabIndex = 4;
             lblLastName.Text = "Last Name:";
             // 
             // txtLastName
             // 
             txtLastName.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtLastName.Location = new Point(223, 96);
-            txtLastName.Margin = new Padding(5);
+            txtLastName.Location = new Point(255, 131);
+            txtLastName.Margin = new Padding(6, 7, 6, 7);
             txtLastName.Name = "txtLastName";
-            txtLastName.Size = new Size(452, 23);
+            txtLastName.Size = new Size(516, 27);
             txtLastName.TabIndex = 5;
             // 
             // lblPhone
             // 
             lblPhone.Anchor = AnchorStyles.Left;
             lblPhone.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            lblPhone.Location = new Point(23, 131);
+            lblPhone.Location = new Point(26, 176);
             lblPhone.Name = "lblPhone";
-            lblPhone.Size = new Size(100, 23);
+            lblPhone.Size = new Size(114, 31);
             lblPhone.TabIndex = 6;
             lblPhone.Text = "Phone:";
             // 
             // txtPhone
             // 
             txtPhone.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtPhone.Location = new Point(223, 131);
-            txtPhone.Margin = new Padding(5);
+            txtPhone.Location = new Point(255, 178);
+            txtPhone.Margin = new Padding(6, 7, 6, 7);
             txtPhone.Name = "txtPhone";
-            txtPhone.Size = new Size(452, 23);
+            txtPhone.Size = new Size(516, 27);
             txtPhone.TabIndex = 7;
             // 
             // lblEmail
             // 
             lblEmail.Anchor = AnchorStyles.Left;
             lblEmail.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            lblEmail.Location = new Point(23, 166);
+            lblEmail.Location = new Point(26, 223);
             lblEmail.Name = "lblEmail";
-            lblEmail.Size = new Size(100, 23);
+            lblEmail.Size = new Size(114, 31);
             lblEmail.TabIndex = 8;
             lblEmail.Text = "Email:";
             // 
             // txtEmail
             // 
             txtEmail.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtEmail.Location = new Point(223, 166);
-            txtEmail.Margin = new Padding(5);
+            txtEmail.Location = new Point(255, 225);
+            txtEmail.Margin = new Padding(6, 7, 6, 7);
             txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(452, 23);
+            txtEmail.Size = new Size(516, 27);
             txtEmail.TabIndex = 9;
             // 
             // lblDOB
             // 
             lblDOB.Anchor = AnchorStyles.Left;
             lblDOB.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            lblDOB.Location = new Point(23, 201);
+            lblDOB.Location = new Point(26, 270);
             lblDOB.Name = "lblDOB";
-            lblDOB.Size = new Size(100, 23);
+            lblDOB.Size = new Size(114, 31);
             lblDOB.TabIndex = 10;
             lblDOB.Text = "Date of Birth:";
             // 
             // dtpDOB
             // 
             dtpDOB.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            dtpDOB.Location = new Point(223, 201);
-            dtpDOB.Margin = new Padding(5);
+            dtpDOB.Location = new Point(255, 272);
+            dtpDOB.Margin = new Padding(6, 7, 6, 7);
             dtpDOB.Name = "dtpDOB";
-            dtpDOB.Size = new Size(452, 23);
+            dtpDOB.Size = new Size(516, 27);
             dtpDOB.TabIndex = 11;
             // 
             // lblGender
             // 
             lblGender.Anchor = AnchorStyles.Left;
             lblGender.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            lblGender.Location = new Point(23, 236);
+            lblGender.Location = new Point(26, 317);
             lblGender.Name = "lblGender";
-            lblGender.Size = new Size(100, 23);
+            lblGender.Size = new Size(114, 31);
             lblGender.TabIndex = 12;
             lblGender.Text = "Gender:";
             // 
@@ -254,19 +230,19 @@ namespace Hospital.WindowsApp.Forms
             // 
             cmbGender.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             cmbGender.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbGender.Location = new Point(223, 236);
-            cmbGender.Margin = new Padding(5);
+            cmbGender.Location = new Point(255, 318);
+            cmbGender.Margin = new Padding(6, 7, 6, 7);
             cmbGender.Name = "cmbGender";
-            cmbGender.Size = new Size(452, 23);
+            cmbGender.Size = new Size(516, 28);
             cmbGender.TabIndex = 13;
             // 
             // lblBloodGroup
             // 
             lblBloodGroup.Anchor = AnchorStyles.Left;
             lblBloodGroup.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            lblBloodGroup.Location = new Point(23, 271);
+            lblBloodGroup.Location = new Point(26, 364);
             lblBloodGroup.Name = "lblBloodGroup";
-            lblBloodGroup.Size = new Size(100, 23);
+            lblBloodGroup.Size = new Size(114, 31);
             lblBloodGroup.TabIndex = 14;
             lblBloodGroup.Text = "Blood Group:";
             // 
@@ -274,105 +250,105 @@ namespace Hospital.WindowsApp.Forms
             // 
             cmbBloodGroup.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             cmbBloodGroup.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbBloodGroup.Location = new Point(223, 271);
-            cmbBloodGroup.Margin = new Padding(5);
+            cmbBloodGroup.Location = new Point(255, 365);
+            cmbBloodGroup.Margin = new Padding(6, 7, 6, 7);
             cmbBloodGroup.Name = "cmbBloodGroup";
-            cmbBloodGroup.Size = new Size(452, 23);
+            cmbBloodGroup.Size = new Size(516, 28);
             cmbBloodGroup.TabIndex = 15;
             // 
             // lblAddressLine1
             // 
             lblAddressLine1.Anchor = AnchorStyles.Left;
             lblAddressLine1.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            lblAddressLine1.Location = new Point(23, 306);
+            lblAddressLine1.Location = new Point(26, 411);
             lblAddressLine1.Name = "lblAddressLine1";
-            lblAddressLine1.Size = new Size(100, 23);
+            lblAddressLine1.Size = new Size(114, 31);
             lblAddressLine1.TabIndex = 16;
             lblAddressLine1.Text = "Address:";
             // 
             // txtAddressLine1
             // 
             txtAddressLine1.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtAddressLine1.Location = new Point(223, 306);
-            txtAddressLine1.Margin = new Padding(5);
+            txtAddressLine1.Location = new Point(255, 413);
+            txtAddressLine1.Margin = new Padding(6, 7, 6, 7);
             txtAddressLine1.Name = "txtAddressLine1";
-            txtAddressLine1.Size = new Size(452, 23);
+            txtAddressLine1.Size = new Size(516, 27);
             txtAddressLine1.TabIndex = 17;
             // 
             // lblCity
             // 
             lblCity.Anchor = AnchorStyles.Left;
             lblCity.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            lblCity.Location = new Point(23, 341);
+            lblCity.Location = new Point(26, 458);
             lblCity.Name = "lblCity";
-            lblCity.Size = new Size(100, 23);
+            lblCity.Size = new Size(114, 31);
             lblCity.TabIndex = 18;
             lblCity.Text = "City:";
             // 
             // txtCity
             // 
             txtCity.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtCity.Location = new Point(223, 341);
-            txtCity.Margin = new Padding(5);
+            txtCity.Location = new Point(255, 460);
+            txtCity.Margin = new Padding(6, 7, 6, 7);
             txtCity.Name = "txtCity";
-            txtCity.Size = new Size(452, 23);
+            txtCity.Size = new Size(516, 27);
             txtCity.TabIndex = 19;
             // 
             // lblEmergencyName
             // 
             lblEmergencyName.Anchor = AnchorStyles.Left;
             lblEmergencyName.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            lblEmergencyName.Location = new Point(23, 376);
+            lblEmergencyName.Location = new Point(26, 505);
             lblEmergencyName.Name = "lblEmergencyName";
-            lblEmergencyName.Size = new Size(100, 23);
+            lblEmergencyName.Size = new Size(114, 31);
             lblEmergencyName.TabIndex = 20;
             lblEmergencyName.Text = "Emergency Name:";
             // 
             // txtEmergencyName
             // 
             txtEmergencyName.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtEmergencyName.Location = new Point(223, 376);
-            txtEmergencyName.Margin = new Padding(5);
+            txtEmergencyName.Location = new Point(255, 507);
+            txtEmergencyName.Margin = new Padding(6, 7, 6, 7);
             txtEmergencyName.Name = "txtEmergencyName";
-            txtEmergencyName.Size = new Size(452, 23);
+            txtEmergencyName.Size = new Size(516, 27);
             txtEmergencyName.TabIndex = 21;
             // 
             // lblEmergencyPhone
             // 
             lblEmergencyPhone.Anchor = AnchorStyles.Left;
             lblEmergencyPhone.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            lblEmergencyPhone.Location = new Point(23, 411);
+            lblEmergencyPhone.Location = new Point(26, 552);
             lblEmergencyPhone.Name = "lblEmergencyPhone";
-            lblEmergencyPhone.Size = new Size(100, 23);
+            lblEmergencyPhone.Size = new Size(114, 31);
             lblEmergencyPhone.TabIndex = 22;
             lblEmergencyPhone.Text = "Emergency Phone:";
             // 
             // txtEmergencyPhone
             // 
             txtEmergencyPhone.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtEmergencyPhone.Location = new Point(223, 411);
-            txtEmergencyPhone.Margin = new Padding(5);
+            txtEmergencyPhone.Location = new Point(255, 554);
+            txtEmergencyPhone.Margin = new Padding(6, 7, 6, 7);
             txtEmergencyPhone.Name = "txtEmergencyPhone";
-            txtEmergencyPhone.Size = new Size(452, 23);
+            txtEmergencyPhone.Size = new Size(516, 27);
             txtEmergencyPhone.TabIndex = 23;
             // 
             // lblMedicalHistory
             // 
             lblMedicalHistory.Anchor = AnchorStyles.Left;
             lblMedicalHistory.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            lblMedicalHistory.Location = new Point(23, 446);
+            lblMedicalHistory.Location = new Point(26, 599);
             lblMedicalHistory.Name = "lblMedicalHistory";
-            lblMedicalHistory.Size = new Size(100, 23);
+            lblMedicalHistory.Size = new Size(114, 31);
             lblMedicalHistory.TabIndex = 24;
             lblMedicalHistory.Text = "Medical History:";
             // 
             // rtbMedicalHistory
             // 
             rtbMedicalHistory.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            rtbMedicalHistory.Location = new Point(25, 480);
-            rtbMedicalHistory.Margin = new Padding(5);
+            rtbMedicalHistory.Location = new Point(29, 645);
+            rtbMedicalHistory.Margin = new Padding(6, 7, 6, 7);
             rtbMedicalHistory.Name = "rtbMedicalHistory";
-            rtbMedicalHistory.Size = new Size(188, 95);
+            rtbMedicalHistory.Size = new Size(214, 201);
             rtbMedicalHistory.TabIndex = 25;
             rtbMedicalHistory.Text = "";
             // 
@@ -381,46 +357,46 @@ namespace Hospital.WindowsApp.Forms
             pnlButtons.BackColor = Color.WhiteSmoke;
             pnlButtons.Controls.Add(btnClose);
             pnlButtons.Dock = DockStyle.Bottom;
-            pnlButtons.Location = new Point(0, 660);
+            pnlButtons.Location = new Point(0, 880);
+            pnlButtons.Margin = new Padding(3, 4, 3, 4);
             pnlButtons.Name = "pnlButtons";
-            pnlButtons.Padding = new Padding(20);
-            pnlButtons.Size = new Size(700, 60);
+            pnlButtons.Padding = new Padding(23, 27, 23, 27);
+            pnlButtons.Size = new Size(800, 80);
             pnlButtons.TabIndex = 2;
             // 
             // btnClose
             // 
             btnClose.Anchor = AnchorStyles.Right;
-            btnClose.BackColor = Color.Red;
-            btnClose.ForeColor = Color.White;
-            btnClose.Location = new Point(620, 15);
+            btnClose.BackColor = Color.White;
+            btnClose.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnClose.ForeColor = Color.Black;
+            btnClose.Image = Properties.Resources.ico_Cancel;
+            btnClose.Location = new Point(693, 20);
+            btnClose.Margin = new Padding(3, 4, 3, 4);
             btnClose.Name = "btnClose";
-            btnClose.Size = new Size(60, 30);
+            btnClose.Size = new Size(85, 40);
             btnClose.TabIndex = 0;
             btnClose.Text = "Close";
+            btnClose.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnClose.UseVisualStyleBackColor = false;
             btnClose.Click += btnClose_Click;
             // 
             // PatientDetailsForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(700, 720);
+            ClientSize = new Size(800, 960);
             Controls.Add(tableLayoutPanel1);
             Controls.Add(pnlButtons);
-            Controls.Add(pnlHeader);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "PatientDetailsForm";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Patient Details";
-            pnlHeader.ResumeLayout(false);
-            pnlHeader.PerformLayout();
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
             pnlButtons.ResumeLayout(false);
             ResumeLayout(false);
         }
-
-        private Panel pnlHeader;
-        private Label lblTitle;
         private TableLayoutPanel tableLayoutPanel1;
         private Label lblId;
         private TextBox txtId;

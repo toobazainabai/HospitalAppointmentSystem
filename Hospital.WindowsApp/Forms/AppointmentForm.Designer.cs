@@ -38,41 +38,43 @@ namespace Hospital.WindowsApp.Forms
             lblPatientId.AutoSize = true;
             lblPatientId.Location = new Point(3, 0);
             lblPatientId.Name = "lblPatientId";
-            lblPatientId.Size = new Size(58, 15);
+            lblPatientId.Size = new Size(73, 20);
             lblPatientId.TabIndex = 0;
             lblPatientId.Text = "Patient ID";
             // 
             // txtPatientId
             // 
             txtPatientId.Dock = DockStyle.Fill;
-            txtPatientId.Location = new Point(203, 3);
+            txtPatientId.Location = new Point(231, 4);
+            txtPatientId.Margin = new Padding(3, 4, 3, 4);
             txtPatientId.Name = "txtPatientId";
-            txtPatientId.Size = new Size(461, 23);
+            txtPatientId.Size = new Size(529, 27);
             txtPatientId.TabIndex = 1;
             // 
             // lblDoctorId
             // 
             lblDoctorId.AutoSize = true;
-            lblDoctorId.Location = new Point(3, 30);
+            lblDoctorId.Location = new Point(3, 40);
             lblDoctorId.Name = "lblDoctorId";
-            lblDoctorId.Size = new Size(57, 15);
+            lblDoctorId.Size = new Size(74, 20);
             lblDoctorId.TabIndex = 2;
             lblDoctorId.Text = "Doctor ID";
             // 
             // txtDoctorId
             // 
             txtDoctorId.Dock = DockStyle.Fill;
-            txtDoctorId.Location = new Point(203, 33);
+            txtDoctorId.Location = new Point(231, 44);
+            txtDoctorId.Margin = new Padding(3, 4, 3, 4);
             txtDoctorId.Name = "txtDoctorId";
-            txtDoctorId.Size = new Size(461, 23);
+            txtDoctorId.Size = new Size(529, 27);
             txtDoctorId.TabIndex = 3;
             // 
             // lblDate
             // 
             lblDate.AutoSize = true;
-            lblDate.Location = new Point(3, 60);
+            lblDate.Location = new Point(3, 80);
             lblDate.Name = "lblDate";
-            lblDate.Size = new Size(83, 15);
+            lblDate.Size = new Size(107, 20);
             lblDate.TabIndex = 4;
             lblDate.Text = "Date and Time";
             // 
@@ -81,17 +83,18 @@ namespace Hospital.WindowsApp.Forms
             dtpDate.CustomFormat = "MM/dd/yyyy hh:mm tt";
             dtpDate.Dock = DockStyle.Fill;
             dtpDate.Format = DateTimePickerFormat.Custom;
-            dtpDate.Location = new Point(203, 63);
+            dtpDate.Location = new Point(231, 84);
+            dtpDate.Margin = new Padding(3, 4, 3, 4);
             dtpDate.Name = "dtpDate";
-            dtpDate.Size = new Size(461, 23);
+            dtpDate.Size = new Size(529, 27);
             dtpDate.TabIndex = 5;
             // 
             // lblStatus
             // 
             lblStatus.AutoSize = true;
-            lblStatus.Location = new Point(3, 90);
+            lblStatus.Location = new Point(3, 120);
             lblStatus.Name = "lblStatus";
-            lblStatus.Size = new Size(39, 15);
+            lblStatus.Size = new Size(49, 20);
             lblStatus.TabIndex = 6;
             lblStatus.Text = "Status";
             // 
@@ -100,35 +103,38 @@ namespace Hospital.WindowsApp.Forms
             cmbStatus.Dock = DockStyle.Fill;
             cmbStatus.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbStatus.FormattingEnabled = true;
-            cmbStatus.Location = new Point(203, 93);
+            cmbStatus.Location = new Point(231, 124);
+            cmbStatus.Margin = new Padding(3, 4, 3, 4);
             cmbStatus.Name = "cmbStatus";
-            cmbStatus.Size = new Size(461, 23);
+            cmbStatus.Size = new Size(529, 28);
             cmbStatus.TabIndex = 7;
             // 
             // lblNotes
             // 
             lblNotes.AutoSize = true;
-            lblNotes.Location = new Point(3, 120);
+            lblNotes.Location = new Point(3, 160);
             lblNotes.Name = "lblNotes";
-            lblNotes.Size = new Size(38, 15);
+            lblNotes.Size = new Size(48, 20);
             lblNotes.TabIndex = 8;
             lblNotes.Text = "Notes";
             // 
             // txtNotes
             // 
             txtNotes.Dock = DockStyle.Fill;
-            txtNotes.Location = new Point(203, 123);
+            txtNotes.Location = new Point(231, 164);
+            txtNotes.Margin = new Padding(3, 4, 3, 4);
             txtNotes.Multiline = true;
             txtNotes.Name = "txtNotes";
-            txtNotes.Size = new Size(461, 114);
+            txtNotes.Size = new Size(529, 152);
             txtNotes.TabIndex = 9;
             // 
             // btnSave
             // 
             btnSave.Image = Properties.Resources.ico_Save;
-            btnSave.Location = new Point(589, 3);
+            btnSave.Location = new Point(674, 4);
+            btnSave.Margin = new Padding(3, 4, 3, 4);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(75, 30);
+            btnSave.Size = new Size(86, 40);
             btnSave.TabIndex = 10;
             btnSave.Text = "Save";
             btnSave.TextAlign = ContentAlignment.MiddleRight;
@@ -139,9 +145,10 @@ namespace Hospital.WindowsApp.Forms
             // btnCancel
             // 
             btnCancel.Image = Properties.Resources.ico_Cancel;
-            btnCancel.Location = new Point(508, 3);
+            btnCancel.Location = new Point(582, 4);
+            btnCancel.Margin = new Padding(3, 4, 3, 4);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(75, 30);
+            btnCancel.Size = new Size(86, 40);
             btnCancel.TabIndex = 11;
             btnCancel.Text = "Cancel";
             btnCancel.TextAlign = ContentAlignment.MiddleRight;
@@ -165,15 +172,16 @@ namespace Hospital.WindowsApp.Forms
             tblAppointment.Controls.Add(lblNotes, 0, 4);
             tblAppointment.Controls.Add(txtNotes, 1, 4);
             tblAppointment.Dock = DockStyle.Top;
-            tblAppointment.Location = new Point(10, 10);
+            tblAppointment.Location = new Point(11, 13);
+            tblAppointment.Margin = new Padding(3, 4, 3, 4);
             tblAppointment.Name = "tblAppointment";
             tblAppointment.RowCount = 5;
-            tblAppointment.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
-            tblAppointment.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
-            tblAppointment.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
-            tblAppointment.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
-            tblAppointment.RowStyles.Add(new RowStyle(SizeType.Absolute, 80F));
-            tblAppointment.Size = new Size(667, 240);
+            tblAppointment.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
+            tblAppointment.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
+            tblAppointment.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
+            tblAppointment.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
+            tblAppointment.RowStyles.Add(new RowStyle(SizeType.Absolute, 107F));
+            tblAppointment.Size = new Size(763, 320);
             tblAppointment.TabIndex = 0;
             // 
             // flpAppointmentbtn
@@ -182,23 +190,25 @@ namespace Hospital.WindowsApp.Forms
             flpAppointmentbtn.Controls.Add(btnCancel);
             flpAppointmentbtn.Dock = DockStyle.Bottom;
             flpAppointmentbtn.FlowDirection = FlowDirection.RightToLeft;
-            flpAppointmentbtn.Location = new Point(10, 281);
+            flpAppointmentbtn.Location = new Point(11, 375);
+            flpAppointmentbtn.Margin = new Padding(3, 4, 3, 4);
             flpAppointmentbtn.Name = "flpAppointmentbtn";
-            flpAppointmentbtn.Size = new Size(667, 50);
+            flpAppointmentbtn.Size = new Size(763, 67);
             flpAppointmentbtn.TabIndex = 1;
             // 
             // AppointmentForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(687, 341);
+            ClientSize = new Size(785, 455);
             Controls.Add(tblAppointment);
             Controls.Add(flpAppointmentbtn);
             FormBorderStyle = FormBorderStyle.FixedDialog;
+            Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "AppointmentForm";
-            Padding = new Padding(10);
+            Padding = new Padding(11, 13, 11, 13);
             StartPosition = FormStartPosition.CenterParent;
             Text = "Appointment";
             tblAppointment.ResumeLayout(false);

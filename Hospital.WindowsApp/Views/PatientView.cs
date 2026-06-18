@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.ComponentModel;
 using Hospital.Core.Models;
 using Hospital.Core.Utilities;
 using Hospital.Core.Contracts;
 using Hospital.WindowsApp.Forms;
+using Hospital.WindowsApp.Helpers;
 using System.Linq;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Hospital.WindowsApp.Views
 {
@@ -14,12 +18,19 @@ namespace Hospital.WindowsApp.Views
         private IDoctorService _doctorService;
         private IAppointmentService _appointmentService;
         private string _selectedPatientId = string.Empty;
-        private List<Patient> _allPatients = new List<Patient>();
+        private BindingList<Patient> _allPatients = new BindingList<Patient>();
+        private LoadingManager _loadingManager;
+        private SortOrder _lastSortOrder = SortOrder.None;
+        private int _lastSortColumnIndex = -1;
 
         public PatientView()
         {
             InitializeComponent();
             dgvPatients.AutoGenerateColumns = false;
+            _loadingManager = new LoadingManager(this);
+
+            // Enable column sorting
+            dgvPatients.ColumnHeaderMouseClick += DgvPatients_ColumnHeaderMouseClick;
         }
 
         public void LoadData(IPatientService patientService, IDoctorService doctorService = null, IAppointmentService appointmentService = null)
@@ -27,15 +38,25 @@ namespace Hospital.WindowsApp.Views
             _patientService = patientService;
             _doctorService = doctorService;
             _appointmentService = appointmentService;
-            RefreshGrid();
+            RefreshGridAsync();
+        }
+
+        private async void RefreshGridAsync()
+        {
+            if (_patientService == null) return;
+
+            _loadingManager.ExecuteAsync(async () =>
+            {
+                var patients = await _patientService.GetAllAsync();
+                _allPatients = new BindingList<Patient>(patients);
+                dgvPatients.DataSource = null;
+                dgvPatients.DataSource = _allPatients;
+            }, "Loading patients...");
         }
 
         private void RefreshGrid()
         {
-            if (_patientService == null) return;
-            _allPatients = _patientService.GetAll();
-            dgvPatients.DataSource = null;
-            dgvPatients.DataSource = _allPatients;
+            RefreshGridAsync();
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -47,29 +68,23 @@ namespace Hospital.WindowsApp.Views
                 return;
             }
 
-            var searchResults = _allPatients.Where(p =>
-                (p.Id ?? "").Contains(searchText, StringComparison.OrdinalIgnoreCase) ||
-                (p.FirstName ?? "").Contains(searchText, StringComparison.OrdinalIgnoreCase) ||
-                (p.LastName ?? "").Contains(searchText, StringComparison.OrdinalIgnoreCase) ||
-                (p.Phone ?? "").Contains(searchText, StringComparison.OrdinalIgnoreCase) ||
-                (p.Email ?? "").Contains(searchText, StringComparison.OrdinalIgnoreCase) ||
-                (p.City ?? "").Contains(searchText, StringComparison.OrdinalIgnoreCase) ||
-                (p.BloodGroup ?? "").Contains(searchText, StringComparison.OrdinalIgnoreCase) ||
-                p.Gender.ToString().Contains(searchText, StringComparison.OrdinalIgnoreCase) ||
-                (p.AddressLine1 ?? "").Contains(searchText, StringComparison.OrdinalIgnoreCase) ||
-                (p.EmergencyName ?? "").Contains(searchText, StringComparison.OrdinalIgnoreCase) ||
-                (p.EmergencyPhone ?? "").Contains(searchText, StringComparison.OrdinalIgnoreCase)
-            ).ToList();
-
-            dgvPatients.DataSource = null;
-            dgvPatients.DataSource = searchResults;
-
-            if (searchResults.Count == 0)
+            _loadingManager.ExecuteAsync(async () =>
             {
-                MessageBox.Show("No patients found matching your search.", "Search Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
+                // 1. Data database se lekar aayein
+                var searchResults = await _patientService.SearchAsync(searchText);
 
+                // 2. Isko BindingList mein convert karein takay UI grid crash na ho aur refresh ho
+                _allPatients = new BindingList<Patient>(searchResults);
+
+                dgvPatients.DataSource = null;
+                dgvPatients.DataSource = _allPatients; // BindingList assign karein
+
+                if (searchResults.Count == 0)
+                {
+                    MessageBox.Show("No patients found matching your search.", "Search Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }, "Searching patients...");
+        }
         private void btnClearSearch_Click(object sender, EventArgs e)
         {
             txtSearch.Clear();
@@ -82,9 +97,12 @@ namespace Hospital.WindowsApp.Views
             {
                 if (form.ShowDialog() == DialogResult.OK)
                 {
-                    _patientService.Add(form.Patient);
-                    MessageBox.Show("Patient added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    RefreshGrid();
+                    _loadingManager.ExecuteAsync(async () =>
+                    {
+                        await _patientService.AddAsync(form.Patient);
+                        MessageBox.Show("Patient added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        RefreshGridAsync();
+                    }, "Adding patient...");
                 }
             }
         }
@@ -97,19 +115,26 @@ namespace Hospital.WindowsApp.Views
                 return;
             }
 
-            var patient = _patientService.GetById(_selectedPatientId);
-            if (patient != null)
+            _loadingManager.ExecuteAsync(async () =>
             {
-                using (var form = new AddPatientForm(patient))
+                var patient = await _patientService.GetByIdAsync(_selectedPatientId);
+                if (patient != null)
                 {
-                    if (form.ShowDialog() == DialogResult.OK)
+                    using (var form = new AddPatientForm(patient))
                     {
-                        _patientService.Update(form.Patient);
-                        MessageBox.Show("Patient updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        RefreshGrid();
+                        _loadingManager.HideLoading();
+                        if (form.ShowDialog() == DialogResult.OK)
+                        {
+                            _loadingManager.ExecuteAsync(async () =>
+                            {
+                                await _patientService.UpdateAsync(form.Patient);
+                                MessageBox.Show("Patient updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                RefreshGridAsync();
+                            }, "Updating patient...");
+                        }
                     }
                 }
-            }
+            }, "Loading patient...");
         }
 
         private void btnView_Click(object sender, EventArgs e)
@@ -120,12 +145,16 @@ namespace Hospital.WindowsApp.Views
                 return;
             }
 
-            var patient = _patientService.GetById(_selectedPatientId);
-            if (patient != null)
+            _loadingManager.ExecuteAsync(async () =>
             {
-                PatientDetailsForm detailsForm = new PatientDetailsForm(patient);
-                detailsForm.ShowDialog();
-            }
+                var patient = await _patientService.GetByIdAsync(_selectedPatientId);
+                if (patient != null)
+                {
+                    _loadingManager.HideLoading();
+                    PatientDetailsForm detailsForm = new PatientDetailsForm(patient);
+                    detailsForm.ShowDialog();
+                }
+            }, "Loading patient details...");
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -138,8 +167,12 @@ namespace Hospital.WindowsApp.Views
 
             if (MessageBox.Show("Are you sure you want to delete this patient?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                _patientService.Delete(_selectedPatientId);
-                RefreshGrid();
+                _loadingManager.ExecuteAsync(async () =>
+                {
+                    await _patientService.DeleteAsync(_selectedPatientId);
+                    MessageBox.Show("Patient deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    RefreshGridAsync();
+                }, "Deleting patient...");
             }
         }
 
@@ -153,6 +186,47 @@ namespace Hospital.WindowsApp.Views
             if (dgvPatients.CurrentRow != null && dgvPatients.CurrentRow.DataBoundItem is Patient selectedPatient)
             {
                 _selectedPatientId = selectedPatient.Id;
+            }
+        }
+
+        private void DgvPatients_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            var column = dgvPatients.Columns[e.ColumnIndex];
+            var dataSource = dgvPatients.DataSource as BindingList<Patient>;
+
+            if (dataSource == null || string.IsNullOrEmpty(column.DataPropertyName))
+                return;
+
+            // Sort the data
+            var propertyName = column.DataPropertyName;
+            var propertyInfo = typeof(Patient).GetProperty(propertyName);
+
+            if (propertyInfo != null)
+            {
+                var sortedList = dataSource.ToList();
+
+                if (_lastSortColumnIndex != e.ColumnIndex)
+                {
+                    sortedList = sortedList.OrderBy(x => propertyInfo.GetValue(x)).ToList();
+                    _lastSortOrder = SortOrder.Ascending;
+                    _lastSortColumnIndex = e.ColumnIndex;
+                }
+                else
+                {
+                    if (_lastSortOrder == SortOrder.Ascending)
+                    {
+                        sortedList = sortedList.OrderByDescending(x => propertyInfo.GetValue(x)).ToList();
+                        _lastSortOrder = SortOrder.Descending;
+                    }
+                    else
+                    {
+                        sortedList = sortedList.OrderBy(x => propertyInfo.GetValue(x)).ToList();
+                        _lastSortOrder = SortOrder.Ascending;
+                    }
+                }
+
+                _allPatients = new BindingList<Patient>(sortedList);
+                dgvPatients.DataSource = _allPatients;
             }
         }
     }

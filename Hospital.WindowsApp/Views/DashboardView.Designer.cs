@@ -30,14 +30,11 @@ namespace Hospital.WindowsApp.Views
             lblTotalPrescriptionsValue = new Label();
             dgvRecentAppointments = new DataGridView();
             lblGridTitle = new Label();
-            pnlTop = new Panel();
-            lblDashboardHeader = new Label();
             tableLayoutPanel1.SuspendLayout();
             pnlPatients.SuspendLayout();
             pnlDoctors.SuspendLayout();
             pnlAppointments.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvRecentAppointments).BeginInit();
-            pnlTop.SuspendLayout();
             SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -50,34 +47,34 @@ namespace Hospital.WindowsApp.Views
             tableLayoutPanel1.Controls.Add(pnlDoctors, 1, 0);
             tableLayoutPanel1.Controls.Add(pnlAppointments, 2, 0);
             tableLayoutPanel1.Dock = DockStyle.Top;
-            tableLayoutPanel1.Location = new Point(0, 60);
+            tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.Padding = new Padding(20);
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 130F));
-            tableLayoutPanel1.Size = new Size(800, 170);
+            tableLayoutPanel1.Size = new Size(869, 170);
             tableLayoutPanel1.TabIndex = 4;
             // 
             // pnlPatients
             // 
-            pnlPatients.BackColor = Color.FromArgb(70, 130, 180);
+            pnlPatients.BackColor = Color.FromArgb(173, 216, 230);
             pnlPatients.Controls.Add(lblTotalPatientsValue);
             pnlPatients.Controls.Add(lblTotalPatientsTitle);
             pnlPatients.Dock = DockStyle.Fill;
             pnlPatients.Location = new Point(23, 23);
             pnlPatients.Name = "pnlPatients";
             pnlPatients.Padding = new Padding(10);
-            pnlPatients.Size = new Size(247, 124);
+            pnlPatients.Size = new Size(270, 124);
             pnlPatients.TabIndex = 0;
             // 
             // lblTotalPatientsValue
             // 
             lblTotalPatientsValue.Dock = DockStyle.Fill;
             lblTotalPatientsValue.Font = new Font("Segoe UI", 32F, FontStyle.Bold);
-            lblTotalPatientsValue.ForeColor = Color.White;
+            lblTotalPatientsValue.ForeColor = Color.DarkBlue;
             lblTotalPatientsValue.Location = new Point(10, 40);
             lblTotalPatientsValue.Name = "lblTotalPatientsValue";
-            lblTotalPatientsValue.Size = new Size(227, 74);
+            lblTotalPatientsValue.Size = new Size(250, 74);
             lblTotalPatientsValue.TabIndex = 1;
             lblTotalPatientsValue.Text = "0";
             lblTotalPatientsValue.TextAlign = ContentAlignment.MiddleCenter;
@@ -86,34 +83,34 @@ namespace Hospital.WindowsApp.Views
             // 
             lblTotalPatientsTitle.Dock = DockStyle.Top;
             lblTotalPatientsTitle.Font = new Font("Segoe UI", 12F);
-            lblTotalPatientsTitle.ForeColor = Color.White;
+            lblTotalPatientsTitle.ForeColor = Color.DarkBlue;
             lblTotalPatientsTitle.Location = new Point(10, 10);
             lblTotalPatientsTitle.Name = "lblTotalPatientsTitle";
-            lblTotalPatientsTitle.Size = new Size(227, 30);
+            lblTotalPatientsTitle.Size = new Size(250, 30);
             lblTotalPatientsTitle.TabIndex = 0;
             lblTotalPatientsTitle.Text = "Total Patients";
             lblTotalPatientsTitle.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // pnlDoctors
             // 
-            pnlDoctors.BackColor = Color.FromArgb(34, 139, 34);
+            pnlDoctors.BackColor = Color.FromArgb(144, 238, 144);
             pnlDoctors.Controls.Add(lblTotalDoctorsValue);
             pnlDoctors.Controls.Add(lblTotalDoctorsTitle);
             pnlDoctors.Dock = DockStyle.Fill;
-            pnlDoctors.Location = new Point(276, 23);
+            pnlDoctors.Location = new Point(299, 23);
             pnlDoctors.Name = "pnlDoctors";
             pnlDoctors.Padding = new Padding(10);
-            pnlDoctors.Size = new Size(247, 124);
+            pnlDoctors.Size = new Size(270, 124);
             pnlDoctors.TabIndex = 1;
             // 
             // lblTotalDoctorsValue
             // 
             lblTotalDoctorsValue.Dock = DockStyle.Fill;
             lblTotalDoctorsValue.Font = new Font("Segoe UI", 32F, FontStyle.Bold);
-            lblTotalDoctorsValue.ForeColor = Color.White;
+            lblTotalDoctorsValue.ForeColor = Color.DarkGreen;
             lblTotalDoctorsValue.Location = new Point(10, 40);
             lblTotalDoctorsValue.Name = "lblTotalDoctorsValue";
-            lblTotalDoctorsValue.Size = new Size(227, 74);
+            lblTotalDoctorsValue.Size = new Size(250, 74);
             lblTotalDoctorsValue.TabIndex = 1;
             lblTotalDoctorsValue.Text = "0";
             lblTotalDoctorsValue.TextAlign = ContentAlignment.MiddleCenter;
@@ -122,34 +119,34 @@ namespace Hospital.WindowsApp.Views
             // 
             lblTotalDoctorsTitle.Dock = DockStyle.Top;
             lblTotalDoctorsTitle.Font = new Font("Segoe UI", 12F);
-            lblTotalDoctorsTitle.ForeColor = Color.White;
+            lblTotalDoctorsTitle.ForeColor = Color.DarkGreen;
             lblTotalDoctorsTitle.Location = new Point(10, 10);
             lblTotalDoctorsTitle.Name = "lblTotalDoctorsTitle";
-            lblTotalDoctorsTitle.Size = new Size(227, 30);
+            lblTotalDoctorsTitle.Size = new Size(250, 30);
             lblTotalDoctorsTitle.TabIndex = 0;
             lblTotalDoctorsTitle.Text = "Total Doctors";
             lblTotalDoctorsTitle.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // pnlAppointments
             // 
-            pnlAppointments.BackColor = Color.FromArgb(255, 140, 0);
+            pnlAppointments.BackColor = Color.FromArgb(255, 192, 203);
             pnlAppointments.Controls.Add(lblTotalAppointmentsValue);
             pnlAppointments.Controls.Add(lblTotalAppointmentsTitle);
             pnlAppointments.Dock = DockStyle.Fill;
-            pnlAppointments.Location = new Point(529, 23);
+            pnlAppointments.Location = new Point(575, 23);
             pnlAppointments.Name = "pnlAppointments";
             pnlAppointments.Padding = new Padding(10);
-            pnlAppointments.Size = new Size(248, 124);
+            pnlAppointments.Size = new Size(271, 124);
             pnlAppointments.TabIndex = 2;
             // 
             // lblTotalAppointmentsValue
             // 
             lblTotalAppointmentsValue.Dock = DockStyle.Fill;
             lblTotalAppointmentsValue.Font = new Font("Segoe UI", 32F, FontStyle.Bold);
-            lblTotalAppointmentsValue.ForeColor = Color.White;
+            lblTotalAppointmentsValue.ForeColor = Color.DarkRed;
             lblTotalAppointmentsValue.Location = new Point(10, 40);
             lblTotalAppointmentsValue.Name = "lblTotalAppointmentsValue";
-            lblTotalAppointmentsValue.Size = new Size(228, 74);
+            lblTotalAppointmentsValue.Size = new Size(251, 74);
             lblTotalAppointmentsValue.TabIndex = 1;
             lblTotalAppointmentsValue.Text = "0";
             lblTotalAppointmentsValue.TextAlign = ContentAlignment.MiddleCenter;
@@ -158,10 +155,10 @@ namespace Hospital.WindowsApp.Views
             // 
             lblTotalAppointmentsTitle.Dock = DockStyle.Top;
             lblTotalAppointmentsTitle.Font = new Font("Segoe UI", 12F);
-            lblTotalAppointmentsTitle.ForeColor = Color.White;
+            lblTotalAppointmentsTitle.ForeColor = Color.DarkRed;
             lblTotalAppointmentsTitle.Location = new Point(10, 10);
             lblTotalAppointmentsTitle.Name = "lblTotalAppointmentsTitle";
-            lblTotalAppointmentsTitle.Size = new Size(228, 30);
+            lblTotalAppointmentsTitle.Size = new Size(251, 30);
             lblTotalAppointmentsTitle.TabIndex = 0;
             lblTotalAppointmentsTitle.Text = "Total Appointments";
             lblTotalAppointmentsTitle.TextAlign = ContentAlignment.MiddleCenter;
@@ -184,6 +181,7 @@ namespace Hospital.WindowsApp.Views
             // 
             dgvRecentAppointments.AllowUserToAddRows = false;
             dgvRecentAppointments.AllowUserToDeleteRows = false;
+            dgvRecentAppointments.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             dgvRecentAppointments.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = Color.DarkSlateBlue;
@@ -194,11 +192,11 @@ namespace Hospital.WindowsApp.Views
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dgvRecentAppointments.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvRecentAppointments.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvRecentAppointments.Dock = DockStyle.Fill;
             dgvRecentAppointments.Location = new Point(0, 280);
             dgvRecentAppointments.Name = "dgvRecentAppointments";
             dgvRecentAppointments.ReadOnly = true;
-            dgvRecentAppointments.Size = new Size(800, 300);
+            dgvRecentAppointments.RowHeadersWidth = 51;
+            dgvRecentAppointments.Size = new Size(869, 200);
             dgvRecentAppointments.TabIndex = 2;
             // 
             // lblGridTitle
@@ -207,50 +205,27 @@ namespace Hospital.WindowsApp.Views
             lblGridTitle.BackColor = Color.WhiteSmoke;
             lblGridTitle.Dock = DockStyle.Top;
             lblGridTitle.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
-            lblGridTitle.Location = new Point(0, 230);
+            lblGridTitle.Location = new Point(0, 170);
             lblGridTitle.Name = "lblGridTitle";
             lblGridTitle.Padding = new Padding(20, 15, 0, 10);
-            lblGridTitle.Size = new Size(224, 50);
+            lblGridTitle.Size = new Size(281, 57);
             lblGridTitle.TabIndex = 3;
             lblGridTitle.Text = "Recent Appointments";
             // 
-            // pnlTop
-            // 
-            pnlTop.BackColor = Color.DarkSlateBlue;
-            pnlTop.Controls.Add(lblDashboardHeader);
-            pnlTop.Dock = DockStyle.Top;
-            pnlTop.Location = new Point(0, 0);
-            pnlTop.Name = "pnlTop";
-            pnlTop.Size = new Size(800, 60);
-            pnlTop.TabIndex = 5;
-            // 
-            // lblDashboardHeader
-            // 
-            lblDashboardHeader.AutoSize = true;
-            lblDashboardHeader.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
-            lblDashboardHeader.ForeColor = Color.White;
-            lblDashboardHeader.Location = new Point(20, 10);
-            lblDashboardHeader.Name = "lblDashboardHeader";
-            lblDashboardHeader.Size = new Size(286, 37);
-            lblDashboardHeader.TabIndex = 0;
-            lblDashboardHeader.Text = "Dashboard Overview";
-            // 
             // DashboardView
             // 
+            AutoScroll = true;
             Controls.Add(dgvRecentAppointments);
             Controls.Add(lblGridTitle);
             Controls.Add(tableLayoutPanel1);
-            Controls.Add(pnlTop);
             Name = "DashboardView";
             Padding = new Padding(0, 0, 0, 20);
-            Size = new Size(800, 600);
+            Size = new Size(869, 750);
             tableLayoutPanel1.ResumeLayout(false);
             pnlPatients.ResumeLayout(false);
             pnlDoctors.ResumeLayout(false);
             pnlAppointments.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvRecentAppointments).EndInit();
-            pnlTop.ResumeLayout(false);
-            pnlTop.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -290,8 +265,6 @@ namespace Hospital.WindowsApp.Views
         private System.Windows.Forms.Label lblTotalPrescriptionsValue;
         private System.Windows.Forms.DataGridView dgvRecentAppointments;
         private System.Windows.Forms.Label lblGridTitle;
-        private System.Windows.Forms.Panel pnlTop;
-        private System.Windows.Forms.Label lblDashboardHeader;
     }
 }
 

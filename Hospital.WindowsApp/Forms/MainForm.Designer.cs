@@ -42,6 +42,8 @@
             btnDoctors = new Button();
             btnAppointments = new Button();
             pnlContent = new Panel();
+            statusStrip1 = new StatusStrip();
+            lblStatusRecords = new ToolStripStatusLabel();
             pnlHeader.SuspendLayout();
             flpLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pblogo).BeginInit();
@@ -49,6 +51,7 @@
             ((System.ComponentModel.ISupportInitialize)picUser).BeginInit();
             pnlSidebar.SuspendLayout();
             flpSidebar.SuspendLayout();
+            statusStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // pnlHeader
@@ -58,9 +61,10 @@
             pnlHeader.Controls.Add(flpRight);
             pnlHeader.Dock = DockStyle.Top;
             pnlHeader.Location = new Point(0, 0);
+            pnlHeader.Margin = new Padding(3, 4, 3, 4);
             pnlHeader.Name = "pnlHeader";
-            pnlHeader.Padding = new Padding(12, 8, 12, 8);
-            pnlHeader.Size = new Size(800, 56);
+            pnlHeader.Padding = new Padding(14, 11, 14, 11);
+            pnlHeader.Size = new Size(914, 75);
             pnlHeader.TabIndex = 0;
             // 
             // flpLeft
@@ -68,18 +72,20 @@
             flpLeft.Controls.Add(pblogo);
             flpLeft.Controls.Add(lblAppTitle);
             flpLeft.Dock = DockStyle.Left;
-            flpLeft.Location = new Point(12, 8);
+            flpLeft.Location = new Point(14, 11);
+            flpLeft.Margin = new Padding(3, 4, 3, 4);
             flpLeft.Name = "flpLeft";
-            flpLeft.Size = new Size(270, 40);
+            flpLeft.Size = new Size(309, 53);
             flpLeft.TabIndex = 2;
             flpLeft.WrapContents = false;
             // 
             // pblogo
             // 
             pblogo.Image = Properties.Resources.ico_Hospital;
-            pblogo.Location = new Point(3, 3);
+            pblogo.Location = new Point(3, 4);
+            pblogo.Margin = new Padding(3, 4, 3, 4);
             pblogo.Name = "pblogo";
-            pblogo.Size = new Size(32, 32);
+            pblogo.Size = new Size(37, 43);
             pblogo.SizeMode = PictureBoxSizeMode.Zoom;
             pblogo.TabIndex = 0;
             pblogo.TabStop = false;
@@ -88,10 +94,10 @@
             // 
             lblAppTitle.AutoSize = true;
             lblAppTitle.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblAppTitle.Location = new Point(41, 0);
+            lblAppTitle.Location = new Point(46, 0);
             lblAppTitle.Name = "lblAppTitle";
-            lblAppTitle.Padding = new Padding(8, 6, 0, 0);
-            lblAppTitle.Size = new Size(228, 26);
+            lblAppTitle.Padding = new Padding(9, 8, 0, 0);
+            lblAppTitle.Size = new Size(287, 33);
             lblAppTitle.TabIndex = 1;
             lblAppTitle.Text = "Hospital Appointment System";
             lblAppTitle.TextAlign = ContentAlignment.MiddleCenter;
@@ -102,35 +108,35 @@
             flpRight.Controls.Add(lblUser);
             flpRight.Dock = DockStyle.Right;
             flpRight.FlowDirection = FlowDirection.RightToLeft;
-            flpRight.Location = new Point(683, 8);
+            flpRight.Location = new Point(780, 11);
+            flpRight.Margin = new Padding(3, 4, 3, 4);
             flpRight.Name = "flpRight";
-            flpRight.Size = new Size(105, 40);
+            flpRight.Size = new Size(120, 53);
             flpRight.TabIndex = 1;
             flpRight.WrapContents = false;
             // 
             // picUser
             // 
             picUser.Image = Properties.Resources.admin;
-            picUser.Location = new Point(58, 4);
-            picUser.Margin = new Padding(4);
+            picUser.Location = new Point(66, 5);
+            picUser.Margin = new Padding(5, 5, 5, 5);
             picUser.Name = "picUser";
-            picUser.Padding = new Padding(5);
-            picUser.Size = new Size(43, 34);
+            picUser.Padding = new Padding(6, 7, 6, 7);
+            picUser.Size = new Size(49, 45);
             picUser.TabIndex = 0;
             picUser.TabStop = false;
             // 
             // lblUser
             // 
-            lblUser.AutoSize = true;
-            lblUser.Dock = DockStyle.Fill;
+            lblUser.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             lblUser.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblUser.Location = new Point(0, 0);
+            lblUser.Location = new Point(-62, 0);
             lblUser.Name = "lblUser";
-            lblUser.Padding = new Padding(0, 6, 8, 0);
-            lblUser.Size = new Size(51, 42);
+            lblUser.Padding = new Padding(0, 11, 11, 0);
+            lblUser.Size = new Size(120, 56);
             lblUser.TabIndex = 1;
-            lblUser.Text = "Admin";
-            lblUser.TextAlign = ContentAlignment.MiddleCenter;
+            lblUser.Text = "admin";
+            lblUser.TextAlign = ContentAlignment.MiddleRight;
             lblUser.Click += lblUser_Click;
             // 
             // pnlSidebar
@@ -138,9 +144,10 @@
             pnlSidebar.BackColor = SystemColors.Window;
             pnlSidebar.Controls.Add(flpSidebar);
             pnlSidebar.Dock = DockStyle.Left;
-            pnlSidebar.Location = new Point(0, 56);
+            pnlSidebar.Location = new Point(0, 75);
+            pnlSidebar.Margin = new Padding(3, 4, 3, 4);
             pnlSidebar.Name = "pnlSidebar";
-            pnlSidebar.Size = new Size(190, 394);
+            pnlSidebar.Size = new Size(217, 499);
             pnlSidebar.TabIndex = 1;
             // 
             // flpSidebar
@@ -154,7 +161,7 @@
             flpSidebar.Location = new Point(0, 0);
             flpSidebar.Margin = new Padding(0);
             flpSidebar.Name = "flpSidebar";
-            flpSidebar.Size = new Size(190, 394);
+            flpSidebar.Size = new Size(217, 499);
             flpSidebar.TabIndex = 0;
             flpSidebar.WrapContents = false;
             // 
@@ -164,9 +171,10 @@
             btnDashboard.FlatStyle = FlatStyle.Flat;
             btnDashboard.Image = Properties.Resources.ico_Dashboard;
             btnDashboard.ImageAlign = ContentAlignment.MiddleLeft;
-            btnDashboard.Location = new Point(3, 3);
+            btnDashboard.Location = new Point(3, 4);
+            btnDashboard.Margin = new Padding(3, 4, 3, 4);
             btnDashboard.Name = "btnDashboard";
-            btnDashboard.Size = new Size(187, 43);
+            btnDashboard.Size = new Size(214, 57);
             btnDashboard.TabIndex = 0;
             btnDashboard.Text = "Dashboard";
             btnDashboard.TextAlign = ContentAlignment.MiddleLeft;
@@ -179,9 +187,10 @@
             btnPatients.FlatStyle = FlatStyle.Flat;
             btnPatients.Image = Properties.Resources.ico_Patients;
             btnPatients.ImageAlign = ContentAlignment.MiddleLeft;
-            btnPatients.Location = new Point(3, 52);
+            btnPatients.Location = new Point(3, 69);
+            btnPatients.Margin = new Padding(3, 4, 3, 4);
             btnPatients.Name = "btnPatients";
-            btnPatients.Size = new Size(187, 43);
+            btnPatients.Size = new Size(214, 57);
             btnPatients.TabIndex = 1;
             btnPatients.Text = "Patients";
             btnPatients.TextAlign = ContentAlignment.MiddleLeft;
@@ -194,9 +203,10 @@
             btnDoctors.FlatStyle = FlatStyle.Flat;
             btnDoctors.Image = Properties.Resources.ico_Doctors;
             btnDoctors.ImageAlign = ContentAlignment.MiddleLeft;
-            btnDoctors.Location = new Point(3, 101);
+            btnDoctors.Location = new Point(3, 134);
+            btnDoctors.Margin = new Padding(3, 4, 3, 4);
             btnDoctors.Name = "btnDoctors";
-            btnDoctors.Size = new Size(187, 43);
+            btnDoctors.Size = new Size(214, 57);
             btnDoctors.TabIndex = 2;
             btnDoctors.Text = "Doctors";
             btnDoctors.TextAlign = ContentAlignment.MiddleLeft;
@@ -209,9 +219,10 @@
             btnAppointments.FlatStyle = FlatStyle.Flat;
             btnAppointments.Image = Properties.Resources.ico_Appointments;
             btnAppointments.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAppointments.Location = new Point(3, 150);
+            btnAppointments.Location = new Point(3, 199);
+            btnAppointments.Margin = new Padding(3, 4, 3, 4);
             btnAppointments.Name = "btnAppointments";
-            btnAppointments.Size = new Size(187, 43);
+            btnAppointments.Size = new Size(214, 57);
             btnAppointments.TabIndex = 3;
             btnAppointments.Text = "Appointments";
             btnAppointments.TextAlign = ContentAlignment.MiddleLeft;
@@ -221,19 +232,41 @@
             // pnlContent
             // 
             pnlContent.Dock = DockStyle.Fill;
-            pnlContent.Location = new Point(190, 56);
+            pnlContent.Location = new Point(217, 75);
+            pnlContent.Margin = new Padding(3, 4, 3, 4);
             pnlContent.Name = "pnlContent";
-            pnlContent.Size = new Size(610, 394);
+            pnlContent.Size = new Size(697, 499);
             pnlContent.TabIndex = 2;
+            // 
+            // statusStrip1
+            // 
+            statusStrip1.ImageScalingSize = new Size(20, 20);
+            statusStrip1.Items.AddRange(new ToolStripItem[] { lblStatusRecords });
+            statusStrip1.Location = new Point(0, 574);
+            statusStrip1.Name = "statusStrip1";
+            statusStrip1.Padding = new Padding(1, 0, 16, 0);
+            statusStrip1.Size = new Size(914, 26);
+            statusStrip1.TabIndex = 3;
+            statusStrip1.Text = "statusStrip1";
+            // 
+            // lblStatusRecords
+            // 
+            lblStatusRecords.Name = "lblStatusRecords";
+            lblStatusRecords.Size = new Size(897, 20);
+            lblStatusRecords.Spring = true;
+            lblStatusRecords.Text = "Ready";
+            lblStatusRecords.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // MainForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(914, 600);
             Controls.Add(pnlContent);
             Controls.Add(pnlSidebar);
             Controls.Add(pnlHeader);
+            Controls.Add(statusStrip1);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "MainForm";
             Text = "MainForm";
             pnlHeader.ResumeLayout(false);
@@ -241,11 +274,13 @@
             flpLeft.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pblogo).EndInit();
             flpRight.ResumeLayout(false);
-            flpRight.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picUser).EndInit();
             pnlSidebar.ResumeLayout(false);
             flpSidebar.ResumeLayout(false);
+            statusStrip1.ResumeLayout(false);
+            statusStrip1.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -264,5 +299,7 @@
         private PictureBox picUser;
         private Label lblAppTitle;
         private Label lblUser;
+        private StatusStrip statusStrip1;
+        private ToolStripStatusLabel lblStatusRecords;
     }
 }

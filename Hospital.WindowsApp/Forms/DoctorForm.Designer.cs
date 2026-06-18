@@ -41,7 +41,7 @@ namespace Hospital.WindowsApp.Forms
             lblFirstName.AutoSize = true;
             lblFirstName.Location = new Point(3, 0);
             lblFirstName.Name = "lblFirstName";
-            lblFirstName.Size = new Size(64, 15);
+            lblFirstName.Size = new Size(80, 20);
             lblFirstName.TabIndex = 0;
             lblFirstName.Text = "First Name";
             // 
@@ -50,7 +50,7 @@ namespace Hospital.WindowsApp.Forms
             txtFirstName.Dock = DockStyle.Fill;
             txtFirstName.Location = new Point(229, 3);
             txtFirstName.Name = "txtFirstName";
-            txtFirstName.Size = new Size(523, 23);
+            txtFirstName.Size = new Size(523, 27);
             txtFirstName.TabIndex = 1;
             // 
             // lblLastName
@@ -58,7 +58,7 @@ namespace Hospital.WindowsApp.Forms
             lblLastName.AutoSize = true;
             lblLastName.Location = new Point(3, 40);
             lblLastName.Name = "lblLastName";
-            lblLastName.Size = new Size(63, 15);
+            lblLastName.Size = new Size(79, 20);
             lblLastName.TabIndex = 2;
             lblLastName.Text = "Last Name";
             // 
@@ -67,7 +67,7 @@ namespace Hospital.WindowsApp.Forms
             txtLastName.Dock = DockStyle.Fill;
             txtLastName.Location = new Point(229, 43);
             txtLastName.Name = "txtLastName";
-            txtLastName.Size = new Size(523, 23);
+            txtLastName.Size = new Size(523, 27);
             txtLastName.TabIndex = 3;
             // 
             // lblPhone
@@ -75,7 +75,7 @@ namespace Hospital.WindowsApp.Forms
             lblPhone.AutoSize = true;
             lblPhone.Location = new Point(3, 80);
             lblPhone.Name = "lblPhone";
-            lblPhone.Size = new Size(41, 15);
+            lblPhone.Size = new Size(50, 20);
             lblPhone.TabIndex = 4;
             lblPhone.Text = "Phone";
             // 
@@ -84,7 +84,7 @@ namespace Hospital.WindowsApp.Forms
             txtPhone.Dock = DockStyle.Fill;
             txtPhone.Location = new Point(229, 83);
             txtPhone.Name = "txtPhone";
-            txtPhone.Size = new Size(523, 23);
+            txtPhone.Size = new Size(523, 27);
             txtPhone.TabIndex = 5;
             // 
             // lblEmail
@@ -92,7 +92,7 @@ namespace Hospital.WindowsApp.Forms
             lblEmail.AutoSize = true;
             lblEmail.Location = new Point(3, 120);
             lblEmail.Name = "lblEmail";
-            lblEmail.Size = new Size(36, 15);
+            lblEmail.Size = new Size(46, 20);
             lblEmail.TabIndex = 6;
             lblEmail.Text = "Email";
             // 
@@ -101,7 +101,7 @@ namespace Hospital.WindowsApp.Forms
             txtEmail.Dock = DockStyle.Fill;
             txtEmail.Location = new Point(229, 123);
             txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(523, 23);
+            txtEmail.Size = new Size(523, 27);
             txtEmail.TabIndex = 7;
             // 
             // lblExperience
@@ -109,7 +109,7 @@ namespace Hospital.WindowsApp.Forms
             lblExperience.AutoSize = true;
             lblExperience.Location = new Point(3, 160);
             lblExperience.Name = "lblExperience";
-            lblExperience.Size = new Size(64, 15);
+            lblExperience.Size = new Size(81, 20);
             lblExperience.TabIndex = 8;
             lblExperience.Text = "Experience";
             // 
@@ -118,7 +118,7 @@ namespace Hospital.WindowsApp.Forms
             numExperience.Dock = DockStyle.Fill;
             numExperience.Location = new Point(229, 163);
             numExperience.Name = "numExperience";
-            numExperience.Size = new Size(523, 23);
+            numExperience.Size = new Size(523, 27);
             numExperience.TabIndex = 9;
             // 
             // lblSpecialty
@@ -126,7 +126,7 @@ namespace Hospital.WindowsApp.Forms
             lblSpecialty.AutoSize = true;
             lblSpecialty.Location = new Point(3, 200);
             lblSpecialty.Name = "lblSpecialty";
-            lblSpecialty.Size = new Size(54, 15);
+            lblSpecialty.Size = new Size(69, 20);
             lblSpecialty.TabIndex = 10;
             lblSpecialty.Text = "Specialty";
             // 
@@ -137,33 +137,35 @@ namespace Hospital.WindowsApp.Forms
             cmbSpecialty.FormattingEnabled = true;
             cmbSpecialty.Location = new Point(229, 203);
             cmbSpecialty.Name = "cmbSpecialty";
-            cmbSpecialty.Size = new Size(523, 23);
+            cmbSpecialty.Size = new Size(523, 28);
             cmbSpecialty.TabIndex = 11;
             // 
             // btnSave
             // 
+            btnSave.BackColor = Color.White;
             btnSave.Image = Properties.Resources.ico_Save;
             btnSave.ImageAlign = ContentAlignment.MiddleLeft;
             btnSave.Location = new Point(677, 3);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(75, 33);
+            btnSave.Size = new Size(75, 47);
             btnSave.TabIndex = 1;
             btnSave.Text = "Save";
             btnSave.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnSave.UseVisualStyleBackColor = true;
+            btnSave.UseVisualStyleBackColor = false;
             btnSave.Click += btnSave_Click;
             // 
             // btnCancel
             // 
+            btnCancel.BackColor = Color.White;
             btnCancel.Image = Properties.Resources.ico_Cancel;
             btnCancel.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCancel.Location = new Point(596, 3);
+            btnCancel.Location = new Point(586, 3);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(75, 33);
+            btnCancel.Size = new Size(85, 47);
             btnCancel.TabIndex = 0;
             btnCancel.Text = "Cancel";
             btnCancel.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.UseVisualStyleBackColor = false;
             btnCancel.Click += btnCancel_Click;
             // 
             // tblDoctor

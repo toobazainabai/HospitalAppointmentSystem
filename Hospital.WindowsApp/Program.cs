@@ -3,6 +3,8 @@ using System.Configuration;
 using Hospital.Core.Contracts;
 using Hospital.Core.Services;
 using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Windows.Forms;
 
 namespace Hospital.WindowsApp
 {
@@ -14,18 +16,22 @@ namespace Hospital.WindowsApp
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
 
             try
             {
-                // Setup Dependency Injection
+                // 1. Pehle hi step mein saari services register karein
                 var services = new ServiceCollection();
                 RegisterServices(services);
                 var serviceProvider = services.BuildServiceProvider();
 
+                // 2. Main Form ka instance lein
                 var mainForm = serviceProvider.GetRequiredService<MainForm>();
+
+                // Login bypass kar ke direct admin username assign kar dein
+                mainForm.LoggedInUser = "admin";
+
+                // 3. Application ko direct chalayein
                 Application.Run(mainForm);
             }
             catch (Exception ex)

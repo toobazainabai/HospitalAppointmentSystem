@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Threading.Tasks;
 using Hospital.Core.Contracts;
 using Hospital.Core.Models;
 using Hospital.Core.Utilities;
@@ -184,12 +185,25 @@ namespace Hospital.Core.Services
         {
             List<Patient> patients = new List<Patient>();
 
+            // 1. Extra spaces ko shuru aur aakhir se khatam karein
+            searchText = searchText?.Trim();
+
+            // Agar search box khali hai to khali list wapas bhej dein ya GetAll() call karein
+            if (string.IsNullOrEmpty(searchText))
+            {
+                return GetAll();
+            }
+
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand(
-                    $"SELECT * FROM {_tableName} WHERE FirstName LIKE @search OR LastName LIKE @search OR Phone LIKE @search", conn);
 
+                // 2. Query ko strictly FirstName, LastName, aur Phone tak mehdood rakhein
+                string query = $"SELECT * FROM {_tableName} WHERE FirstName LIKE @search OR LastName LIKE @search OR Phone LIKE @search";
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+
+                // 3. Dono taraf % lagane se agar koi 'Fatima' dhoonde ga to 'Fatima Ali' mil jayegi
                 cmd.Parameters.AddWithValue("@search", "%" + searchText + "%");
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -252,6 +266,37 @@ namespace Hospital.Core.Services
             }
 
             throw new InvalidOperationException($"None of the expected patient tables exist: {string.Join(", ", candidates)}");
+        }
+
+        // Async implementations
+        public async Task<List<Patient>> GetAllAsync()
+        {
+            return await Task.Run(() => GetAll());
+        }
+
+        public async Task<Patient> GetByIdAsync(string id)
+        {
+            return await Task.Run(() => GetById(id));
+        }
+
+        public async Task AddAsync(Patient patient)
+        {
+            await Task.Run(() => Add(patient));
+        }
+
+        public async Task UpdateAsync(Patient patient)
+        {
+            await Task.Run(() => Update(patient));
+        }
+
+        public async Task DeleteAsync(string id)
+        {
+            await Task.Run(() => Delete(id));
+        }
+
+        public async Task<List<Patient>> SearchAsync(string text)
+        {
+            return await Task.Run(() => Search(text));
         }
     }
 }

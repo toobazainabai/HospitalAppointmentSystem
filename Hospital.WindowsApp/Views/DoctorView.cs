@@ -1,10 +1,14 @@
 using System;
 using System.Windows.Forms;
+using System.ComponentModel;
 using Hospital.Core.Models;
 using Hospital.Core.Utilities;
 using Hospital.Core.Contracts;
 using Hospital.WindowsApp.Forms;
+using Hospital.WindowsApp.Helpers;
 using System.Linq;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Hospital.WindowsApp.Views
 {
@@ -12,27 +16,44 @@ namespace Hospital.WindowsApp.Views
     {
         private IDoctorService _doctorService;
         private string _selectedDoctorId = string.Empty;
-        private List<Doctor> _allDoctors = new List<Doctor>();
+        private BindingList<Doctor> _allDoctors = new BindingList<Doctor>();
+        private LoadingManager _loadingManager;
+        private SortOrder _lastSortOrder = SortOrder.None;
+        private int _lastSortColumnIndex = -1;
 
         public DoctorView()
         {
             InitializeComponent();
             dgvDoctors.AutoGenerateColumns = false;
+            _loadingManager = new LoadingManager(this);
+
+            // Enable column sorting
+            dgvDoctors.ColumnHeaderMouseClick += DgvDoctors_ColumnHeaderMouseClick;
         }
 
         public void LoadData(IDoctorService doctorService)
         {
             _doctorService = doctorService;
-            RefreshGrid();
+            RefreshGridAsync();
+        }
+
+        private async void RefreshGridAsync()
+        {
+            if (_doctorService == null) return;
+
+            _loadingManager.ExecuteAsync(async () =>
+            {
+                var doctors = await _doctorService.GetAllAsync();
+                _allDoctors = new BindingList<Doctor>(doctors);
+                dgvDoctors.DataSource = null;
+                dgvDoctors.DataSource = _allDoctors;
+                _selectedDoctorId = string.Empty;
+            }, "Loading doctors...");
         }
 
         private void RefreshGrid()
         {
-            if (_doctorService == null) return;
-            _allDoctors = _doctorService.GetAll();
-            dgvDoctors.DataSource = null;
-            dgvDoctors.DataSource = _allDoctors;
-            _selectedDoctorId = string.Empty;
+            RefreshGridAsync();
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -44,23 +65,17 @@ namespace Hospital.WindowsApp.Views
                 return;
             }
 
-            var searchResults = _allDoctors.Where(d =>
-                (d.Id ?? "").Contains(searchText, StringComparison.OrdinalIgnoreCase) ||
-                (d.FirstName ?? "").Contains(searchText, StringComparison.OrdinalIgnoreCase) ||
-                (d.LastName ?? "").Contains(searchText, StringComparison.OrdinalIgnoreCase) ||
-                (d.Phone ?? "").Contains(searchText, StringComparison.OrdinalIgnoreCase) ||
-                (d.Email ?? "").Contains(searchText, StringComparison.OrdinalIgnoreCase) ||
-                d.Specialty.ToString().Contains(searchText, StringComparison.OrdinalIgnoreCase) ||
-                d.ExperienceYears.ToString().Contains(searchText, StringComparison.OrdinalIgnoreCase)
-            ).ToList();
-
-            dgvDoctors.DataSource = null;
-            dgvDoctors.DataSource = searchResults;
-
-            if (searchResults.Count == 0)
+            _loadingManager.ExecuteAsync(async () =>
             {
-                MessageBox.Show("No doctors found matching your search.", "Search Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+                var searchResults = await _doctorService.SearchAsync(searchText);
+                dgvDoctors.DataSource = null;
+                dgvDoctors.DataSource = searchResults;
+
+                if (searchResults.Count == 0)
+                {
+                    MessageBox.Show("No doctors found matching your search.", "Search Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }, "Searching doctors...");
         }
 
         private void btnClearSearch_Click(object sender, EventArgs e)
@@ -75,9 +90,12 @@ namespace Hospital.WindowsApp.Views
             {
                 if (form.ShowDialog() == DialogResult.OK)
                 {
-                    _doctorService.Add(form.CurrentDoctor);
-                    MessageBox.Show("Doctor added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    RefreshGrid();
+                    _loadingManager.ExecuteAsync(async () =>
+                    {
+                        await _doctorService.AddAsync(form.CurrentDoctor);
+                        MessageBox.Show("Doctor added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        RefreshGridAsync();
+                    }, "Adding doctor...");
                 }
             }
         }
@@ -90,19 +108,26 @@ namespace Hospital.WindowsApp.Views
                 return;
             }
 
-            var doctor = _doctorService.GetById(_selectedDoctorId);
-            if (doctor != null)
+            _loadingManager.ExecuteAsync(async () =>
             {
-                using (var form = new DoctorForm(doctor))
+                var doctor = await _doctorService.GetByIdAsync(_selectedDoctorId);
+                if (doctor != null)
                 {
-                    if (form.ShowDialog() == DialogResult.OK)
+                    using (var form = new DoctorForm(doctor))
                     {
-                        _doctorService.Update(form.CurrentDoctor);
-                        MessageBox.Show("Doctor updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        RefreshGrid();
+                        _loadingManager.HideLoading();
+                        if (form.ShowDialog() == DialogResult.OK)
+                        {
+                            _loadingManager.ExecuteAsync(async () =>
+                            {
+                                await _doctorService.UpdateAsync(form.CurrentDoctor);
+                                MessageBox.Show("Doctor updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                RefreshGridAsync();
+                            }, "Updating doctor...");
+                        }
                     }
                 }
-            }
+            }, "Loading doctor...");
         }
 
         private void btnView_Click(object sender, EventArgs e)
@@ -113,14 +138,18 @@ namespace Hospital.WindowsApp.Views
                 return;
             }
 
-            var doctor = _doctorService.GetById(_selectedDoctorId);
-            if (doctor != null)
+            _loadingManager.ExecuteAsync(async () =>
             {
-                using (var form = new DoctorDetailsForm(doctor))
+                var doctor = await _doctorService.GetByIdAsync(_selectedDoctorId);
+                if (doctor != null)
                 {
-                    form.ShowDialog();
+                    _loadingManager.HideLoading();
+                    using (var form = new DoctorDetailsForm(doctor))
+                    {
+                        form.ShowDialog();
+                    }
                 }
-            }
+            }, "Loading doctor details...");
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -133,9 +162,12 @@ namespace Hospital.WindowsApp.Views
 
             if (MessageBox.Show("Are you sure you want to delete this doctor?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                _doctorService.Delete(_selectedDoctorId);
-                MessageBox.Show("Doctor deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                RefreshGrid();
+                _loadingManager.ExecuteAsync(async () =>
+                {
+                    await _doctorService.DeleteAsync(_selectedDoctorId);
+                    MessageBox.Show("Doctor deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    RefreshGridAsync();
+                }, "Deleting doctor...");
             }
         }
 
@@ -157,20 +189,44 @@ namespace Hospital.WindowsApp.Views
             }
         }
 
-        private void dgvDoctors_SelectionChanged(object sender, EventArgs e)
+        private void DgvDoctors_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (dgvDoctors.CurrentRow != null && dgvDoctors.CurrentRow.DataBoundItem is Doctor selectedDoctor)
+            var column = dgvDoctors.Columns[e.ColumnIndex];
+            var dataSource = dgvDoctors.DataSource as BindingList<Doctor>;
+
+            if (dataSource == null || string.IsNullOrEmpty(column.DataPropertyName))
+                return;
+
+            var propertyName = column.DataPropertyName;
+            var propertyInfo = typeof(Doctor).GetProperty(propertyName);
+
+            if (propertyInfo != null)
             {
-                _selectedDoctorId = selectedDoctor.Id;
+                var sortedList = dataSource.ToList();
+
+                if (_lastSortColumnIndex != e.ColumnIndex)
+                {
+                    sortedList = sortedList.OrderBy(x => propertyInfo.GetValue(x)).ToList();
+                    _lastSortOrder = SortOrder.Ascending;
+                    _lastSortColumnIndex = e.ColumnIndex;
+                }
+                else
+                {
+                    if (_lastSortOrder == SortOrder.Ascending)
+                    {
+                        sortedList = sortedList.OrderByDescending(x => propertyInfo.GetValue(x)).ToList();
+                        _lastSortOrder = SortOrder.Descending;
+                    }
+                    else
+                    {
+                        sortedList = sortedList.OrderBy(x => propertyInfo.GetValue(x)).ToList();
+                        _lastSortOrder = SortOrder.Ascending;
+                    }
+                }
+
+                _allDoctors = new BindingList<Doctor>(sortedList);
+                dgvDoctors.DataSource = _allDoctors;
             }
-        }
-
-        private void tsDoctor_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-        }
-
-        private void dgvDoctors_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
         }
     }
 }

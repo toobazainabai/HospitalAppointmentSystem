@@ -42,7 +42,7 @@ namespace Hospital.WindowsApp.Forms
             lblDoctorId.AutoSize = true;
             lblDoctorId.Location = new Point(3, 0);
             lblDoctorId.Name = "lblDoctorId";
-            lblDoctorId.Size = new Size(57, 15);
+            lblDoctorId.Size = new Size(74, 20);
             lblDoctorId.TabIndex = 0;
             lblDoctorId.Text = "Doctor ID";
             // 
@@ -52,7 +52,7 @@ namespace Hospital.WindowsApp.Forms
             txtDoctorId.Location = new Point(229, 3);
             txtDoctorId.Name = "txtDoctorId";
             txtDoctorId.ReadOnly = true;
-            txtDoctorId.Size = new Size(523, 23);
+            txtDoctorId.Size = new Size(523, 27);
             txtDoctorId.TabIndex = 1;
             // 
             // lblFirstName
@@ -60,7 +60,7 @@ namespace Hospital.WindowsApp.Forms
             lblFirstName.AutoSize = true;
             lblFirstName.Location = new Point(3, 40);
             lblFirstName.Name = "lblFirstName";
-            lblFirstName.Size = new Size(64, 15);
+            lblFirstName.Size = new Size(80, 20);
             lblFirstName.TabIndex = 2;
             lblFirstName.Text = "First Name";
             // 
@@ -70,7 +70,7 @@ namespace Hospital.WindowsApp.Forms
             txtFirstName.Location = new Point(229, 43);
             txtFirstName.Name = "txtFirstName";
             txtFirstName.ReadOnly = true;
-            txtFirstName.Size = new Size(523, 23);
+            txtFirstName.Size = new Size(523, 27);
             txtFirstName.TabIndex = 3;
             // 
             // lblLastName
@@ -78,7 +78,7 @@ namespace Hospital.WindowsApp.Forms
             lblLastName.AutoSize = true;
             lblLastName.Location = new Point(3, 80);
             lblLastName.Name = "lblLastName";
-            lblLastName.Size = new Size(63, 15);
+            lblLastName.Size = new Size(79, 20);
             lblLastName.TabIndex = 4;
             lblLastName.Text = "Last Name";
             // 
@@ -88,7 +88,7 @@ namespace Hospital.WindowsApp.Forms
             txtLastName.Location = new Point(229, 83);
             txtLastName.Name = "txtLastName";
             txtLastName.ReadOnly = true;
-            txtLastName.Size = new Size(523, 23);
+            txtLastName.Size = new Size(523, 27);
             txtLastName.TabIndex = 5;
             // 
             // lblPhone
@@ -96,7 +96,7 @@ namespace Hospital.WindowsApp.Forms
             lblPhone.AutoSize = true;
             lblPhone.Location = new Point(3, 120);
             lblPhone.Name = "lblPhone";
-            lblPhone.Size = new Size(41, 15);
+            lblPhone.Size = new Size(50, 20);
             lblPhone.TabIndex = 6;
             lblPhone.Text = "Phone";
             // 
@@ -106,7 +106,7 @@ namespace Hospital.WindowsApp.Forms
             txtPhone.Location = new Point(229, 123);
             txtPhone.Name = "txtPhone";
             txtPhone.ReadOnly = true;
-            txtPhone.Size = new Size(523, 23);
+            txtPhone.Size = new Size(523, 27);
             txtPhone.TabIndex = 7;
             // 
             // lblEmail
@@ -114,7 +114,7 @@ namespace Hospital.WindowsApp.Forms
             lblEmail.AutoSize = true;
             lblEmail.Location = new Point(3, 160);
             lblEmail.Name = "lblEmail";
-            lblEmail.Size = new Size(36, 15);
+            lblEmail.Size = new Size(46, 20);
             lblEmail.TabIndex = 8;
             lblEmail.Text = "Email";
             // 
@@ -124,7 +124,7 @@ namespace Hospital.WindowsApp.Forms
             txtEmail.Location = new Point(229, 163);
             txtEmail.Name = "txtEmail";
             txtEmail.ReadOnly = true;
-            txtEmail.Size = new Size(523, 23);
+            txtEmail.Size = new Size(523, 27);
             txtEmail.TabIndex = 9;
             // 
             // lblExperience
@@ -132,7 +132,7 @@ namespace Hospital.WindowsApp.Forms
             lblExperience.AutoSize = true;
             lblExperience.Location = new Point(3, 200);
             lblExperience.Name = "lblExperience";
-            lblExperience.Size = new Size(64, 15);
+            lblExperience.Size = new Size(81, 20);
             lblExperience.TabIndex = 10;
             lblExperience.Text = "Experience";
             // 
@@ -142,7 +142,7 @@ namespace Hospital.WindowsApp.Forms
             numExperience.Enabled = false;
             numExperience.Location = new Point(229, 203);
             numExperience.Name = "numExperience";
-            numExperience.Size = new Size(523, 23);
+            numExperience.Size = new Size(523, 27);
             numExperience.TabIndex = 11;
             // 
             // lblSpecialty
@@ -150,7 +150,7 @@ namespace Hospital.WindowsApp.Forms
             lblSpecialty.AutoSize = true;
             lblSpecialty.Location = new Point(3, 240);
             lblSpecialty.Name = "lblSpecialty";
-            lblSpecialty.Size = new Size(54, 15);
+            lblSpecialty.Size = new Size(69, 20);
             lblSpecialty.TabIndex = 12;
             lblSpecialty.Text = "Specialty";
             // 
@@ -161,20 +161,21 @@ namespace Hospital.WindowsApp.Forms
             cmbSpecialty.FormattingEnabled = true;
             cmbSpecialty.Location = new Point(229, 243);
             cmbSpecialty.Name = "cmbSpecialty";
-            cmbSpecialty.Size = new Size(523, 23);
+            cmbSpecialty.Size = new Size(523, 28);
             cmbSpecialty.TabIndex = 13;
             // 
             // btnClose
             // 
+            btnClose.BackColor = Color.White;
             btnClose.Image = Properties.Resources.ico_Cancel;
             btnClose.ImageAlign = ContentAlignment.MiddleLeft;
-            btnClose.Location = new Point(677, 3);
+            btnClose.Location = new Point(660, 3);
             btnClose.Name = "btnClose";
-            btnClose.Size = new Size(75, 33);
+            btnClose.Size = new Size(92, 47);
             btnClose.TabIndex = 14;
             btnClose.Text = "Close";
             btnClose.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnClose.UseVisualStyleBackColor = true;
+            btnClose.UseVisualStyleBackColor = false;
             btnClose.Click += btnClose_Click;
             // 
             // tblDoctor

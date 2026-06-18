@@ -51,30 +51,31 @@ namespace Hospital.WindowsApp.Views
             tableLayoutPanel1.Controls.Add(dgvDoctors, 0, 2);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
+            tableLayoutPanel1.Margin = new Padding(3, 4, 3, 4);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 3;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 80F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Size = new Size(800, 600);
+            tableLayoutPanel1.Size = new Size(914, 800);
             tableLayoutPanel1.TabIndex = 0;
             // 
             // tsDoctor
             // 
+            tsDoctor.ImageScalingSize = new Size(20, 20);
             tsDoctor.Items.AddRange(new ToolStripItem[] { btnAdd, btnUpdate, btnView, btnDelete, toolStripSeparator1, btnRefresh });
             tsDoctor.Location = new Point(0, 0);
             tsDoctor.Name = "tsDoctor";
-            tsDoctor.Size = new Size(800, 25);
+            tsDoctor.Size = new Size(914, 27);
             tsDoctor.TabIndex = 0;
             tsDoctor.Text = "toolStrip1";
-            tsDoctor.ItemClicked += tsDoctor_ItemClicked;
             // 
             // btnAdd
             // 
             btnAdd.Image = Properties.Resources.ico_Add;
             btnAdd.ImageTransparentColor = Color.Magenta;
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(49, 22);
+            btnAdd.Size = new Size(61, 24);
             btnAdd.Text = "Add";
             btnAdd.Click += btnAdd_Click;
             // 
@@ -83,16 +84,15 @@ namespace Hospital.WindowsApp.Views
             btnUpdate.Image = Properties.Resources.ico_edit;
             btnUpdate.ImageTransparentColor = Color.Magenta;
             btnUpdate.Name = "btnUpdate";
-            btnUpdate.Size = new Size(47, 22);
+            btnUpdate.Size = new Size(59, 24);
             btnUpdate.Text = "Edit";
             btnUpdate.Click += btnUpdate_Click;
             // 
             // btnView
             // 
-            btnView.DisplayStyle = ToolStripItemDisplayStyle.Text;
             btnView.Image = Properties.Resources.ico_View;
             btnView.Name = "btnView";
-            btnView.Size = new Size(36, 22);
+            btnView.Size = new Size(65, 24);
             btnView.Text = "View";
             btnView.Click += btnView_Click;
             // 
@@ -101,21 +101,21 @@ namespace Hospital.WindowsApp.Views
             btnDelete.Image = Properties.Resources.ico_Delete;
             btnDelete.ImageTransparentColor = Color.Magenta;
             btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(60, 22);
+            btnDelete.Size = new Size(77, 24);
             btnDelete.Text = "Delete";
             btnDelete.Click += btnDelete_Click;
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(6, 25);
+            toolStripSeparator1.Size = new Size(6, 27);
             // 
             // btnRefresh
             // 
             btnRefresh.Image = Properties.Resources.ico_Refresh;
             btnRefresh.ImageTransparentColor = Color.Magenta;
             btnRefresh.Name = "btnRefresh";
-            btnRefresh.Size = new Size(66, 22);
+            btnRefresh.Size = new Size(82, 24);
             btnRefresh.Text = "Refresh";
             btnRefresh.Click += btnClear_Click;
             // 
@@ -127,37 +127,40 @@ namespace Hospital.WindowsApp.Views
             pnlSearch.Controls.Add(btnSearch);
             pnlSearch.Controls.Add(btnClearSearch);
             pnlSearch.Dock = DockStyle.Fill;
-            pnlSearch.Location = new Point(3, 33);
+            pnlSearch.Location = new Point(3, 44);
+            pnlSearch.Margin = new Padding(3, 4, 3, 4);
             pnlSearch.Name = "pnlSearch";
-            pnlSearch.Padding = new Padding(10);
-            pnlSearch.Size = new Size(794, 54);
+            pnlSearch.Padding = new Padding(11, 13, 11, 13);
+            pnlSearch.Size = new Size(908, 72);
             pnlSearch.TabIndex = 1;
             // 
             // lblSearch
             // 
             lblSearch.AutoSize = true;
             lblSearch.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            lblSearch.Location = new Point(10, 15);
+            lblSearch.Location = new Point(11, 20);
             lblSearch.Name = "lblSearch";
-            lblSearch.Size = new Size(58, 19);
+            lblSearch.Size = new Size(68, 23);
             lblSearch.TabIndex = 0;
             lblSearch.Text = "Search:";
             // 
             // txtSearch
             // 
-            txtSearch.Location = new Point(80, 12);
+            txtSearch.Location = new Point(91, 16);
+            txtSearch.Margin = new Padding(3, 4, 3, 4);
             txtSearch.Name = "txtSearch";
-            txtSearch.PlaceholderText = "Enter any doctor data (ID, Name, Phone, Email, Specialty, etc.)";
-            txtSearch.Size = new Size(450, 23);
+            txtSearch.PlaceholderText = "Enter First Name,LastName";
+            txtSearch.Size = new Size(514, 27);
             txtSearch.TabIndex = 1;
             // 
             // btnSearch
             // 
             btnSearch.BackColor = Color.DarkSlateBlue;
             btnSearch.ForeColor = Color.White;
-            btnSearch.Location = new Point(540, 12);
+            btnSearch.Location = new Point(617, 16);
+            btnSearch.Margin = new Padding(3, 4, 3, 4);
             btnSearch.Name = "btnSearch";
-            btnSearch.Size = new Size(75, 23);
+            btnSearch.Size = new Size(86, 31);
             btnSearch.TabIndex = 2;
             btnSearch.Text = "Search";
             btnSearch.UseVisualStyleBackColor = false;
@@ -167,9 +170,10 @@ namespace Hospital.WindowsApp.Views
             // 
             btnClearSearch.BackColor = Color.Gray;
             btnClearSearch.ForeColor = Color.White;
-            btnClearSearch.Location = new Point(620, 12);
+            btnClearSearch.Location = new Point(709, 16);
+            btnClearSearch.Margin = new Padding(3, 4, 3, 4);
             btnClearSearch.Name = "btnClearSearch";
-            btnClearSearch.Size = new Size(75, 23);
+            btnClearSearch.Size = new Size(86, 31);
             btnClearSearch.TabIndex = 3;
             btnClearSearch.Text = "Clear";
             btnClearSearch.UseVisualStyleBackColor = false;
@@ -183,20 +187,21 @@ namespace Hospital.WindowsApp.Views
             dgvDoctors.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvDoctors.Columns.AddRange(new DataGridViewColumn[] { colId, colFirstName, colLastName, colPhone, colEmail, colExperience, colSpecialty });
             dgvDoctors.Dock = DockStyle.Fill;
-            dgvDoctors.Location = new Point(3, 93);
+            dgvDoctors.Location = new Point(3, 124);
+            dgvDoctors.Margin = new Padding(3, 4, 3, 4);
             dgvDoctors.Name = "dgvDoctors";
             dgvDoctors.ReadOnly = true;
+            dgvDoctors.RowHeadersWidth = 51;
             dgvDoctors.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvDoctors.Size = new Size(794, 504);
+            dgvDoctors.Size = new Size(908, 672);
             dgvDoctors.TabIndex = 2;
             dgvDoctors.CellClick += dgvDoctors_CellClick;
-            dgvDoctors.CellContentClick += dgvDoctors_CellContentClick;
-            dgvDoctors.SelectionChanged += dgvDoctors_SelectionChanged;
             // 
             // colId
             // 
             colId.DataPropertyName = "Id";
             colId.HeaderText = "ID";
+            colId.MinimumWidth = 6;
             colId.Name = "colId";
             colId.ReadOnly = true;
             colId.Visible = false;
@@ -205,6 +210,7 @@ namespace Hospital.WindowsApp.Views
             // 
             colFirstName.DataPropertyName = "FirstName";
             colFirstName.HeaderText = "First Name";
+            colFirstName.MinimumWidth = 6;
             colFirstName.Name = "colFirstName";
             colFirstName.ReadOnly = true;
             // 
@@ -212,6 +218,7 @@ namespace Hospital.WindowsApp.Views
             // 
             colLastName.DataPropertyName = "LastName";
             colLastName.HeaderText = "Last Name";
+            colLastName.MinimumWidth = 6;
             colLastName.Name = "colLastName";
             colLastName.ReadOnly = true;
             // 
@@ -219,6 +226,7 @@ namespace Hospital.WindowsApp.Views
             // 
             colPhone.DataPropertyName = "Phone";
             colPhone.HeaderText = "Phone";
+            colPhone.MinimumWidth = 6;
             colPhone.Name = "colPhone";
             colPhone.ReadOnly = true;
             // 
@@ -226,6 +234,7 @@ namespace Hospital.WindowsApp.Views
             // 
             colEmail.DataPropertyName = "Email";
             colEmail.HeaderText = "Email";
+            colEmail.MinimumWidth = 6;
             colEmail.Name = "colEmail";
             colEmail.ReadOnly = true;
             // 
@@ -233,6 +242,7 @@ namespace Hospital.WindowsApp.Views
             // 
             colExperience.DataPropertyName = "ExperienceYears";
             colExperience.HeaderText = "Experience";
+            colExperience.MinimumWidth = 6;
             colExperience.Name = "colExperience";
             colExperience.ReadOnly = true;
             // 
@@ -240,16 +250,18 @@ namespace Hospital.WindowsApp.Views
             // 
             colSpecialty.DataPropertyName = "Specialty";
             colSpecialty.HeaderText = "Specialty";
+            colSpecialty.MinimumWidth = 6;
             colSpecialty.Name = "colSpecialty";
             colSpecialty.ReadOnly = true;
             // 
             // DoctorView
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(tableLayoutPanel1);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "DoctorView";
-            Size = new Size(800, 600);
+            Size = new Size(914, 800);
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
             tsDoctor.ResumeLayout(false);
